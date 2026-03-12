@@ -264,8 +264,8 @@ change it to
 - **轉換半寬／全寬字型：**
   注音模式下輸入皆為「全形」，英文模式下皆為「半形」，在注音模式下可選取文字後點選 Menubar 中輸入法選項裡面切換全形半形。
 
-> [!NOTE] 2026-02-21 :
-> 已從內建注音輸入法跳槽至 vChewing 唯音輸入法。
+> [!NOTE]
+> 2026-02-21:已從內建注音輸入法跳槽至 vChewing 唯音輸入法。
 > 如何備份自定義辭典與設定檔請看 [vChewing_manager.sh](script_backup#vChewing_manager.sh)
 
 ---
@@ -297,7 +297,8 @@ youtube.com##+js(set, Object.prototype.hasAllowedInstreamAd, true)
 | browser.tabs.closeWindowWithLastTab |        false        |
 ### 5.3 Enhancer for YouTube
 
-> [!NOTE] 2025-10-23 at Arc
+> [!NOTE]
+> 2025-10-23 at Arc
 > 
 > ```json
 > {
@@ -432,7 +433,8 @@ youtube.com##+js(set, Object.prototype.hasAllowedInstreamAd, true)
 > }
 > ```
 
-> [!NOTE] 2025-10-23 at Firefox
+> [!NOTE]
+> 2025-10-23 at Firefox
 > 
 > ```json
 > {"version":"2.0.130.1","settings":{"blur":0,"brightness":100,"contrast":100,"grayscale":0,"huerotate":0,"invert":0,"saturate":100,"sepia":0,"applyvideofilters":false,"backgroundcolor":"#000000","backgroundopacity":85,"blackbars":false,"blockautoplay":false,"blockhfrformats":false,"blockwebmformats":false,"boostvolume":false,"cinemamode":false,"cinemamodewideplayer":false,"controlbar":{"active":false,"autohide":false,"centered":true,"position":"absolute"},"controls":["loop","reverse-playlist","speed-minus","speed-plus","screenshot"],"controlsvisible":true,"controlspeed":true,"controlspeedmousebutton":false,"controlvolume":false,"controlvolumemousebutton":false,"convertshorts":false,"customcolors":{"--main-color":"#ff0033","--main-background":"#111111","--second-background":"#181818","--hover-background":"#232323","--main-text":"#eff0f1","--dimmer-text":"#cccccc","--shadow":"#000000"},"customcssrules":"","customscript":"","customtheme":false,"darktheme":true,"date":1745134330277,"defaultvolume":false,"disableautoplay":false,"executescript":false,"expanddescription":false,"filter":"none","hidecardsendscreens":false,"hidechat":false,"hidecomments":false,"hiderelated":false,"hideshorts":false,"ignoreplaylists":true,"ignorepopupplayer":true,"localecode":"zh_TW","localedir":"ltr","message":false,"miniplayer":false,"miniplayerposition":"top-left","miniplayersize":"480x270","newestcomments":true,"overridespeeds":true,"pauseforegroundtab":false,"pausevideos":false,"popuplayersize":"640x360","qualityembeds":"medium","qualityembedsfullscreen":"hd1080","qualityplaylists":"hd720","qualityplaylistsfullscreen":"hd1080","qualityvideos":"hd720","qualityvideosfullscreen":"hd1080","reload":false,"reversemousewheeldirection":false,"selectquality":false,"selectqualityfullscreenoff":false,"selectqualityfullscreenon":false,"speed":1,"speedvariation":0.25,"stopvideos":false,"theatermode":false,"theme":"default-dark","themevariant":"dark-red.css","update":1745134330277,"volume":50,"volumemultiplier":2,"volumevariation":5,"wideplayer":false,"wideplayerviewport":false}}
@@ -441,7 +443,8 @@ youtube.com##+js(set, Object.prototype.hasAllowedInstreamAd, true)
 ---
 ## 六、 Mac 熱點分享與除錯 (Internet Sharing)
 
-> [!NOTE] 使用情境
+> [!NOTE]
+> 使用情境
 > 讓 Mac 透過 **有線網路（Ethernet）** 上網，並透過 **Wi-Fi** 分享給其他裝置（如手機、iPad、筆電）使用。此章節包含 GUI 設定流程與 CLI 底層除錯紀錄。
 
 ### 6.1 透過系統介面設定 (GUI)
@@ -500,7 +503,6 @@ netstat -an | grep 192.168.2
 sudo launchctl bootout system /System/Library/LaunchDaemons/com.apple.InternetSharing.plist 2>/dev/null
 
 sudo launchctl bootstrap system /System/Library/LaunchDaemons/com.apple.InternetSharing.plist
-
 ```
 
 *(執行後可嘗試重新關閉再開啟網際網路共享 UI 開關)*
@@ -510,7 +512,8 @@ sudo launchctl bootstrap system /System/Library/LaunchDaemons/com.apple.Internet
 
 * **解法：** 前往「系統設定」 → 「Apple ID」 → 「iCloud」 → 「Handoff」將其關閉；並在「網路」 → 「Wi-Fi」中關閉「允許其他裝置加入熱點」，再重新設定共享。
 
-> [!IMPORTANT] 終極清理手段 (重置所有網路設定)
+> [!IMPORTANT]
+> 終極清理手段 (重置所有網路設定)
 > 若上述方法皆無效，可強制刪除相關的 `.plist` 設定檔並重開機（**注意：這會清空部分網路設定，請謹慎使用**）：
 > ```bash
 > sudo rm /Library/Preferences/SystemConfiguration/com.apple.nat.plist
@@ -536,7 +539,8 @@ sudo create_ap en0 en5 MyRealHotspot mysecurepassword
 
 ```
 
-> [!WARNING] 備註：向 Apple 回報 Bug
+> [!WARNING]
+> 備註：向 Apple 回報 Bug
 > 該問題曾在 macOS 15.3.2 發生過。若遇到 `Wi-Fi enters HOSTAP mode but no SSID is broadcast...` 的狀況，可至 [Apple Feedback Assistant](https://feedbackassistant.apple.com) 提交回報。
 
 ---
