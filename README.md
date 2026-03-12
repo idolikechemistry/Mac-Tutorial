@@ -185,7 +185,8 @@ brew bundle --file=~/Desktop/Brewfile
 ```
 - 這個指令會自動安裝所有在 `Brewfile` 裡的軟體與套件，包括 command-line 工具（formula）與應用程式（cask）
 
-> [!TIP] 匯出軟體清單（選用）
+> [!TIP]
+> 匯出軟體清單（選用）
 > 如果只想產出純清單來參考，也可以：
 > ```bash
 > brew list > ~/Desktop/brew-formula-list.txt
