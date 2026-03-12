@@ -1388,144 +1388,280 @@ echo "   • Embedded: Metadata, Thumbnail (v38 Ffmpeg manual)"
 ```sh
 #!/bin/zsh
 
+  
+
 # ==========================================
-#   唯音輸入法 (vChewing) 資料管家 v2.0
-#   修正：精確鎖定官方文件指定的設定檔路徑
+
+# 🎹 唯音輸入法 (vChewing) 資料管家 v2.4 (Git 雙向同步版)
+
+# 新增：還原前自動執行 git pull 確保抓取最新版本
+
 # ==========================================
+
+  
 
 # --- [設定區] 路徑變數 ---
+
 APP_ID="org.atelierInmu.inputmethod.vChewing"
 
-# 1. 備份存放區 (iCloud)
-ICLOUD_PATH="$HOME/Library/Mobile Documents/com~apple~TextEdit/Documents"
-BACKUP_ROOT="$ICLOUD_PATH/vChewing_Backups"
+  
 
-# 2. 來源：使用者詞庫 (位於沙盒內，確認無誤)
-SRC_DATA="$HOME/Library/Containers/$APP_ID/Data/Library/Application Support/vChewing"
+# 1. 備份存放區 (你的 GitHub 本地資料夾)
 
-# 3. 來源：偏好設定檔 (修正為官方文件指定的一般路徑)
-SRC_PREF="$HOME/Library/Preferences/${APP_ID}.plist"
+BACKUP_ROOT="/Users/jay/my_documents/Github/my_vChewing-dic"
 
-# --- [功能 1] 執行備份 ---
+  
+
+# 2. 來源：使用者詞庫 (你的 iCloud TextEdit 目錄)
+
+SRC_DATA="/Users/jay/Library/Mobile Documents/com~apple~TextEdit/Documents/vChewing"
+
+  
+
+# 3. 來源：偏好設定檔
+
+SRC_PREF="/Users/jay/Library/Preferences/${APP_ID}.plist"
+
+  
+
+# --- [功能 1] 執行備份與推播 ---
+
 function do_backup() {
-    TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-    TARGET_DIR="$BACKUP_ROOT/$TIMESTAMP"
-    
-    echo "\n----------------------------------------"
-    echo "☁️  正在執行備份..."
-    echo "📂 目標：$TARGET_DIR"
-    echo "----------------------------------------"
-    
-    mkdir -p "$TARGET_DIR"
-    
-    # (A) 備份詞庫
-    echo "📦 [1/2] 備份使用者詞庫..."
-    if [ -d "$SRC_DATA" ]; then
-        cp -p "$SRC_DATA"/*.txt "$TARGET_DIR/" 2>/dev/null
-        echo "   ✅ 詞庫已備份 (.txt)"
-    else
-        echo "   ⚠️ 警告：找不到詞庫資料夾 ($SRC_DATA)"
-    fi
-    
-    # (B) 備份設定檔 (雙重保險策略)
-    echo "⚙️ [2/2] 備份偏好設定..."
-    
-    # 策略 1: 直接複製實體檔案 (根據官方文件)
-    if [ -f "$SRC_PREF" ]; then
-        cp "$SRC_PREF" "$TARGET_DIR/"
-        echo "   ✅ 實體設定檔已備份 (.plist)"
-    else
-        echo "   ⚠️ 實體檔案未找到，嘗試使用系統指令導出..."
-        # 策略 2: 使用 defaults export 作為備用方案
-        defaults export "$APP_ID" "$TARGET_DIR/${APP_ID}.plist" 2>/dev/null
-        if [ -s "$TARGET_DIR/${APP_ID}.plist" ]; then
-            echo "   ✅ 設定已透過系統導出"
-        else
-            echo "   ❌ 錯誤：無法備份設定檔，請確認輸入法是否安裝。"
-        fi
-    fi
-    
-    echo "----------------------------------------"
-    echo "🎉 備份完成！"
+
+echo "\n----------------------------------------"
+
+echo "☁️ 正在執行備份..."
+
+echo "📂 目標：$BACKUP_ROOT"
+
+echo "----------------------------------------"
+
+mkdir -p "$BACKUP_ROOT"
+
+echo "📦 [1/3] 備份使用者詞庫與自訂符號檔..."
+
+if [ -d "$SRC_DATA" ]; then
+
+cp -p "$SRC_DATA"/*.txt "$BACKUP_ROOT/" 2>/dev/null
+
+cp -p "$SRC_DATA"/symbols.dat "$BACKUP_ROOT/" 2>/dev/null
+
+echo " ✅ 詞庫 (.txt) 與符號檔 (symbols.dat) 已拷貝"
+
+else
+
+echo " ⚠️ 警告：找不到詞庫資料夾 ($SRC_DATA)"
+
+fi
+
+echo "⚙️ [2/3] 備份偏好設定..."
+
+if [ -f "$SRC_PREF" ]; then
+
+cp "$SRC_PREF" "$BACKUP_ROOT/"
+
+echo " ✅ 實體設定檔已拷貝 (.plist)"
+
+else
+
+echo " ⚠️ 實體檔案未找到，嘗試使用系統指令導出..."
+
+defaults export "$APP_ID" "$BACKUP_ROOT/${APP_ID}.plist" 2>/dev/null
+
+if [ -s "$BACKUP_ROOT/${APP_ID}.plist" ]; then
+
+echo " ✅ 設定已透過系統導出"
+
+else
+
+echo " ❌ 錯誤：無法備份設定檔，請確認輸入法是否安裝。"
+
+fi
+
+fi
+
+echo "🚀 [3/3] 將變更提交並推送到 GitHub..."
+
+cd "$BACKUP_ROOT" || { echo " ❌ 錯誤：無法進入 GitHub 資料夾"; return; }
+
+if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+
+git add .
+
+if git diff-index --quiet HEAD --; then
+
+echo " ℹ️ 目前詞庫與設定沒有新變更，無需推送。"
+
+else
+
+COMMIT_MSG="Auto-backup: $(date +'%Y-%m-%d %H:%M:%S')"
+
+git commit -m "$COMMIT_MSG"
+
+echo " ⏳ 正在推送到 GitHub..."
+
+git push
+
+echo " ✅ Git 推送完成！"
+
+fi
+
+else
+
+echo " ⚠️ 警告：備份資料夾尚未初始化為 Git 儲存庫。"
+
+echo " 請先在 $BACKUP_ROOT 內執行 git init 與設定遠端網址。"
+
+fi
+
+echo "----------------------------------------"
+
+echo "🎉 任務完成！"
+
 }
 
-# --- [功能 2] 執行還原 ---
+  
+
+# --- [功能 2] 執行還原與拉取 ---
+
 function do_restore() {
-    # 找尋最新的備份資料夾
-    LATEST_BACKUP=$(ls -td "$BACKUP_ROOT"/*/ 2>/dev/null | head -1)
-    
-    if [ -z "$LATEST_BACKUP" ]; then
-        echo "\n❌ 錯誤：在 iCloud 找不到任何備份記錄！"
-        return
-    fi
-    
-    # 去除路徑最後的換行符號
-    LATEST_BACKUP="${LATEST_BACKUP%$'\n'}"
-    
-    echo "\n----------------------------------------"
-    echo "♻️  正在執行還原..."
-    echo "📂 來源：$(basename "$LATEST_BACKUP")"
-    echo "----------------------------------------"
-    echo "⚠️  警告：這將覆蓋目前的設定與詞庫！"
-    echo "按 Enter 繼續，或按 Ctrl+C 取消..."
-    read
-    
-    # 1. 強制關閉輸入法
-    echo "🛑 [1/4] 關閉輸入法進程..."
-    pkill -f vChewing 2>/dev/null
-    
-    # 2. 還原設定檔
-    BACKUP_PLIST="${LATEST_BACKUP}${APP_ID}.plist"
-    # 相容舊版備份檔名
-    if [ ! -f "$BACKUP_PLIST" ]; then BACKUP_PLIST="${LATEST_BACKUP}settings_backup.plist"; fi
 
-    if [ -f "$BACKUP_PLIST" ]; then
-        echo "⚙️ [2/4] 匯入偏好設定..."
-        # 先刪除舊設定，避免快取衝突
-        defaults delete "$APP_ID" 2>/dev/null
-        # 匯入新設定
-        defaults import "$APP_ID" "$BACKUP_PLIST"
-        echo "   ✅ 設定已匯入"
-    else
-        echo "   ⚠️ 備份中無設定檔，跳過。"
-    fi
-    
-    # 3. 還原詞庫
-    echo "📦 [3/4] 還原使用者詞庫..."
-    if [ -d "$SRC_DATA" ]; then
-        cp "$LATEST_BACKUP"*.txt "$SRC_DATA/" 2>/dev/null
-        echo "   ✅ 詞庫已覆蓋"
-    else
-        mkdir -p "$SRC_DATA"
-        cp "$LATEST_BACKUP"*.txt "$SRC_DATA/" 2>/dev/null
-        echo "   ✅ 詞庫資料夾已重建並還原"
-    fi
-    
-    # 4. 重啟輸入法
-    echo "🔄 [4/4] 重啟輸入法..."
-    pkill -f vChewing 2>/dev/null
-    
-    echo "----------------------------------------"
-    echo "🎉 還原完成！請切換輸入法以生效。"
+if [ ! -d "$BACKUP_ROOT" ]; then
+
+echo "\n❌ 錯誤：找不到備份資料夾 ($BACKUP_ROOT)！"
+
+return
+
+fi
+
+echo "\n----------------------------------------"
+
+echo "♻️ 正在執行還原..."
+
+echo "📂 來源：$BACKUP_ROOT"
+
+echo "----------------------------------------"
+
+# [新增] 步驟 0：從 GitHub 拉取最新變更
+
+echo "☁️ [0/4] 正在從 GitHub 下載最新版本 (git pull)..."
+
+cd "$BACKUP_ROOT" || { echo " ❌ 錯誤：無法進入 GitHub 資料夾"; return; }
+
+if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+
+git pull origin main --rebase # 建議使用 rebase 避免產生多餘的 merge commit
+
+echo " ✅ 最新版本下載完成！"
+
+else
+
+echo " ⚠️ 警告：這不是一個 Git 儲存庫，將跳過下載直接使用本機檔案。"
+
+fi
+
+echo "----------------------------------------"
+
+echo "⚠️ 警告：這將使用剛才下載（或本機）的設定與詞庫，覆蓋你目前的設定！"
+
+echo "按 Enter 繼續，或按 Ctrl+C 取消..."
+
+read
+
+# 1. 強制關閉輸入法
+
+echo "🛑 [1/4] 關閉輸入法進程..."
+
+pkill -f vChewing 2>/dev/null
+
+# 2. 還原設定檔
+
+BACKUP_PLIST="$BACKUP_ROOT/${APP_ID}.plist"
+
+  
+
+if [ -f "$BACKUP_PLIST" ]; then
+
+echo "⚙️ [2/4] 匯入偏好設定..."
+
+defaults delete "$APP_ID" 2>/dev/null
+
+defaults import "$APP_ID" "$BACKUP_PLIST"
+
+echo " ✅ 設定已匯入"
+
+else
+
+echo " ⚠️ 備份中無設定檔，跳過。"
+
+fi
+
+# 3. 還原詞庫與符號檔
+
+echo "📦 [3/4] 還原使用者詞庫與自訂符號檔..."
+
+if [ ! -d "$SRC_DATA" ]; then
+
+mkdir -p "$SRC_DATA"
+
+echo " ✅ 詞庫資料夾已重建"
+
+fi
+
+cp "$BACKUP_ROOT"/*.txt "$SRC_DATA/" 2>/dev/null
+
+cp "$BACKUP_ROOT/symbols.dat" "$SRC_DATA/" 2>/dev/null
+
+echo " ✅ 詞庫與自訂符號檔已還原"
+
+# 4. 重啟輸入法
+
+echo "🔄 [4/4] 重啟輸入法..."
+
+pkill -f vChewing 2>/dev/null
+
+echo "----------------------------------------"
+
+echo "🎉 還原完成！請切換輸入法以生效。"
+
 }
+
+  
 
 # --- [主選單] ---
+
 clear
+
 echo "========================================"
-echo "   🎹 唯音輸入法 (vChewing) 資料管家 v2.0"
+
+echo " 🎹 唯音輸入法 (vChewing) 資料管家 v2.4"
+
 echo "========================================"
-echo "1) 📤 備份 (Backup)"
-echo "2) 📥 還原 (Restore)"
+
+echo "1) 📤 備份並推送到 Github (Backup & Push)"
+
+echo "2) 📥 從 Github 拉取並還原至本機 (Pull & Restore)"
+
 echo "3) 🚪 離開 (Exit)"
+
 echo "----------------------------------------"
+
 echo -n "請選擇功能 (1-3): "
+
 read choice
 
+  
+
 case $choice in
-    1) do_backup ;;
-    2) do_restore ;;
-    3) echo "再見！"; exit 0 ;;
-    *) echo "無效的選擇。" ;;
+
+1) do_backup ;;
+
+2) do_restore ;;
+
+3) echo "再見！"; exit 0 ;;
+
+*) echo "無效的選擇。" ;;
+
 esac
 ```
 
