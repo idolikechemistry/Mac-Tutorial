@@ -102,7 +102,7 @@ chflags nohidden <路徑>
 defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock
 ```
 
-> [!NOTE] 
+> [!NOTE]
 > 2025-09-29：MacOS Tahoe 取消 Launchpad ，此代碼已無用（悲），但還是可以在 Dock 莫名故障的時候重新啟動 Dock
 
 ### 2.2 強制結束程式
