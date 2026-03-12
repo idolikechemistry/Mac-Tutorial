@@ -1,0 +1,20 @@
+/* 1. 鎖定歌詞捲動容器 */
+/* 根據截圖，Media Extended 的容器通常是 .mx-lyric-container 或類似名稱 */
+.workspace-leaf-content[data-type="media-view"] .view-content,
+div[class*="lyric-container"] {
+    scroll-snap-type: y mandatory; /* 開啟垂直方向的強迫捕捉 */
+    scroll-behavior: smooth;       /* 讓自動對齊時有平滑動畫 */
+}
+
+/* 2. 定義歌詞行（p 標籤）的捕捉行為 */
+div[class*="lyric-container"] p {
+    scroll-snap-align: start;      /* 讓每一行都對齊到容器頂部 */
+    scroll-snap-stop: normal;      /* 正常的捕捉行為 */
+}
+
+/* 3. 針對當前高亮行進行優化（選用） */
+p[data-active="true"] {
+    scroll-snap-align: start;      /* 確保高亮行一定要在最上方 */
+    /* 這裡可以加一點 padding 避免太貼頂 */
+    scroll-padding-top: 10px; 
+}

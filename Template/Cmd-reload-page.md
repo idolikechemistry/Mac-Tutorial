@@ -1,0 +1,3 @@
+<%*
+	app.workspace.activeLeaf.rebuildView();
+%>

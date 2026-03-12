@@ -1,0 +1,100 @@
+/* @settings
+name: Enhanced Math Full JACS Style
+id: enhanced-math-jacs-style-full
+settings:
+  - title: Enable enhanced JACS math styling
+    id: enable-enhanced-math
+    type: class-toggle
+    default: true
+    description: "啟用完整的 JACS 論文風格數學樣式（包含字體、箭頭強化、間距調整）"
+
+  - title: Inline math font family
+    id: math-font-inline
+    type: variable-text
+    default: '"STIX Two Math", serif'
+    description: "內嵌數學公式使用的字體（JACS 標準：STIX Two Math）"
+
+  - title: Inline math font size
+    id: math-font-size-inline
+    type: variable-text
+    default: "1em"
+    description: "內嵌數學字體大小，通常與正文字同高"
+
+  - title: Display math font family
+    id: math-font-display
+    type: variable-text
+    default: '"STIX Two Math", serif'
+    description: "$$ 顯示區塊公式使用的字體"
+
+  - title: Display math font size
+    id: math-font-size-display
+    type: variable-text
+    default: "1.05em"
+    description: "$$ 顯示公式的大小，可略大以便閱讀"
+
+  - title: Display math line height
+    id: math-line-height-display
+    type: variable-text
+    default: "1.6"
+    description: "$$ 顯示區塊公式的行距"
+*/
+
+/* === JACS full styling: fonts === */
+body.enhanced-math .markdown-preview-view mjx-container[jax="CHTML"]:not([display="true"]) {
+  font-family: var(--math-font-inline);
+  font-size: var(--math-font-size-inline);
+}
+
+body.enhanced-math .markdown-preview-view mjx-container[jax="CHTML"][display="true"],
+body.enhanced-math .markdown-preview-view .math-display {
+  font-family: var(--math-font-display);
+  font-size: var(--math-font-size-display);
+  line-height: var(--math-line-height-display);
+  text-align: center;
+  font-weight: 400;
+  letter-spacing: 0;
+  margin: 1.5em auto;
+}
+
+/* === No global mjx-mi override (preserve default KaTeX logic for italics) === */
+
+/* === Subscript/superscript refinements === */
+mjx-script, mjx-sup, mjx-sub {
+  font-size: 0.8em;
+  vertical-align: unset;
+  margin-left: 0.05em;
+}
+
+/* === Enhanced reaction arrow style === */
+mjx-mo[stretchy="true"] {
+  font-weight: 600;
+  font-size: 125%;
+  text-rendering: geometricPrecision;
+}
+
+mjx-mover[accent="true"] > mjx-mo[stretchy="true"],
+mjx-munder[accent="true"] > mjx-mo[stretchy="true"] {
+  font-size: 130%;
+  padding: 0 0.25em;
+  font-weight: 500;
+}
+
+mjx-munder mjx-mi,
+mjx-mover mjx-mi {
+  font-family: "STIX Two Math", serif;
+  font-style: normal;
+  font-size: 0.75em;
+  text-align: center;
+}
+
+/* === JACS-style stereochemistry: (R)/(S)/(Z)/(E) 等標記斜體修正 === */
+mjx-container mjx-mstyle mjx-mi[mathvariant="normal"] {
+  font-family: var(--math-stereo-font, "STIX Two Math", "Latin Modern Math", serif);
+  font-style: italic;
+}
+
+/* === 確保反應條件與化學標記如 THF、Δ 顯示為文字風格 === */
+mjx-container mjx-mtext {
+  font-family: var(--math-text-font, "STIX Two Text", "Latin Modern Roman", serif);
+  font-style: normal;
+}

@@ -1,0 +1,15 @@
+{
+  "cssTheme": "Border",
+  "baseFontSize": 20,
+  "enabledCssSnippets": [
+    "dividing line customize",
+    "enhanced-math-style",
+    "File title center",
+    "full-width-tables",
+    "Header-1 align center",
+    "Latex table",
+    "lyric-top",
+    "ruby-size",
+    "tableStyles"
+  ]
+}

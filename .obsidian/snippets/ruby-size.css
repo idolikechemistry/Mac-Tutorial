@@ -1,0 +1,11 @@
+/* 放大注音 (Furigana) 的大小 */
+ruby rt {
+    font-size: 0.8em !important; /* 預設通常是 0.6em 左右，數值愈大注音愈大 */
+    font-weight: 450;            /* 讓注音稍微加粗一點，會更清晰 */
+}
+
+/* 如果注音放大後導致行距太擠，可以調整以下數值 */
+.markdown-rendered ruby {
+    line-height: 2.5; 
+    letter-spacing: 0.03em; /* 稍微拉開字距，更有質感 */
+}

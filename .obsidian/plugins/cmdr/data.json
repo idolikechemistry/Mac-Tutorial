@@ -1,0 +1,61 @@
+{
+  "confirmDeletion": true,
+  "showAddCommand": true,
+  "debug": false,
+  "editorMenu": [],
+  "fileMenu": [],
+  "leftRibbon": [
+    {
+      "id": "app:open-settings",
+      "icon": "lucide-settings",
+      "name": "開啟設定",
+      "mode": "any"
+    },
+    {
+      "id": "theme:toggle-light-dark",
+      "icon": "lucide-sun-moon",
+      "name": "切換亮色/暗色模式",
+      "mode": "any"
+    },
+    {
+      "id": "obsidian-style-settings:show-style-settings-leaf",
+      "icon": "lucide-view",
+      "name": "Style Settings: Show style settings view",
+      "mode": "any"
+    }
+  ],
+  "rightRibbon": [],
+  "titleBar": [],
+  "statusBar": [],
+  "pageHeader": [
+    {
+      "id": "templater-obsidian:create-new-note-from-template",
+      "icon": "lucide-edit",
+      "name": "Templater: Create new note from template",
+      "mode": "any"
+    },
+    {
+      "id": "templater-obsidian:Template/Cmd-reload-page.md",
+      "icon": "lucide-refresh-cw",
+      "name": "Templater: Insert Cmd-reload-page",
+      "mode": "any"
+    }
+  ],
+  "macros": [],
+  "explorer": [],
+  "hide": {
+    "statusbar": [],
+    "leftRibbon": []
+  },
+  "spacing": "10",
+  "advancedToolbar": {
+    "rowHeight": 48,
+    "rowCount": 1,
+    "spacing": 0,
+    "buttonWidth": 48,
+    "columnLayout": false,
+    "mappedIcons": [],
+    "tooltips": false,
+    "heightOffset": 0
+  }
+}

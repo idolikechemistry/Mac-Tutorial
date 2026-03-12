@@ -1,0 +1,37 @@
+/* === 閱讀模式下的表格全寬顯示 === */
+.markdown-preview-view table {
+  width: 100%;
+  max-width: var(--file-line-width); /* Prism 的內文寬度 */
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  display: table;
+  box-shadow: none;
+}
+
+/* 確保外層不裁切表格 */
+.markdown-preview-view .markdown-preview-section {
+  overflow-x: visible !important;
+}
+
+
+/* === 強制 Live Preview 模式下的表格寬度一致（方式二）=== */
+/* 說明：這會暴力改寫 CodeMirror 中表格的行排版邏輯 */
+
+.cm-line.HyperMD-table-row {
+  width: 100% !important;
+  max-width: var(--file-line-width) !important;
+  display: block;
+}
+
+.cm-line.HyperMD-table-row .cm-table-widget {
+  display: block;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.cm-line.HyperMD-table-row .cm-table-widget table {
+  width: 100% !important;
+  table-layout: auto;
+  border-collapse: collapse;
+}

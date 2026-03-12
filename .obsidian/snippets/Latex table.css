@@ -1,0 +1,73 @@
+/* Latex-style academic table layout with Prism theme compatibility */
+.academia table {
+  width: 100%;
+  max-width: var(--file-line-width);
+  margin-left: auto;
+  margin-right: auto;
+  display: table;
+  border-collapse: collapse;
+  
+}
+
+.academia th,
+.academia td {
+    border: none;
+    padding: 0.51rem;
+    line-height: 1.1;
+}
+
+.academia table > tbody > tr:first-child > td,
+.academia table > tbody > tr:first-child > th {
+    border-top: 1.36px solid black;
+}
+
+.academia table > tbody > tr:last-child > td,
+.academia table > tbody > tr:last-child > th {
+    border-bottom: 1.36px solid black;
+}
+
+.academia thead th {
+    background-color: white !important;
+    font-weight: 700;
+    padding: 8px 9px 5px 9px;
+}
+
+.academia tr:nth-child(even) {
+    background-color: #ebecf1;
+}
+
+.academia tbody tr:hover td {
+    background-color: #f5f1da;
+}
+
+/* Dark mode adjustments for Prism theme */
+.theme-dark .academia table {
+    border-top: 2.27px solid white;
+    border-bottom: 2.27px solid white;
+}
+
+.theme-dark .academia table > tbody > tr:first-child > td,
+.theme-dark .academia table > tbody > tr:first-child > th {
+    border-top: 1.36px solid white;
+}
+
+.theme-dark .academia table > tbody > tr:last-child > td,
+.theme-dark .academia table > tbody > tr:last-child > th {
+    border-bottom: 1.36px solid white;
+}
+
+.theme-dark .academia thead th {
+    background-color: black !important;
+}
+
+.theme-dark .academia tr:nth-child(odd) {
+    background-color: #2e2e2e;
+}
+
+.theme-dark .academia tr:nth-child(even) {
+    background-color: #364151;
+}
+
+.theme-dark .academia tbody tr:hover td {
+    background-color: #4a4a4a;
+}

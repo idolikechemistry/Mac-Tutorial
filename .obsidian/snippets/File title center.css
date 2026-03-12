@@ -1,0 +1,6 @@
+/* 置中檔案名稱 */
+div.inline-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

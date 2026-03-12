@@ -1,0 +1,16 @@
+
+/* 修改分割線的粗細和顏色 */
+hr {
+    border: none;
+    height: 2px;
+    border-top: var(--hr-thickness) solid;
+    border-color: #3EA6F0;
+    margin: 2rem 0;
+  }
+  
+.markdown-rendered hr {
+    border: none;
+    height: 2px;
+    border-top: var(--hr-thickness) solid;
+    border-color: #3EA6F0;
+  }

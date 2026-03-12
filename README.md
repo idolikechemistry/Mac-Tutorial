@@ -8,9 +8,11 @@ tags:
 ---
 # 與電腦的戰鬥記錄
 ---
-> **Abstract** : 本文件紀錄 MacOS 的系統調教及常用 App 配置。
-> 
+
+> [!NOTE] 
+> 本文件紀錄 MacOS 的系統調教及常用 App 配置。
 > Updated at 2026-03-12
+
 ---
 ```mermaid
 mindmap
