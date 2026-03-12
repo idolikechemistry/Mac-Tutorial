@@ -1,14 +1,12 @@
 ---
-up:
-  - "[[Dashboard]]"
 aliases:
   - Mac使用手冊
-description:
 tags:
   - Mac
   - MacOS
   - iOS
 ---
+# 與電腦的戰鬥記錄
 ---
 > **Abstract** : 本文件紀錄 MacOS 的系統調教及常用 App 配置。
 > 
