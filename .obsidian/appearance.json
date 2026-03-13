@@ -1,6 +1,6 @@
 {
   "cssTheme": "Border",
-  "baseFontSize": 20,
+  "baseFontSize": 16,
   "enabledCssSnippets": [
     "dividing line customize",
     "enhanced-math-style",
