@@ -1,3 +1,12 @@
 {
-  "editor:toggle-comments": []
+  "editor:toggle-comments": [],
+  "editor:toggle-source": [
+    {
+      "modifiers": [
+        "Alt",
+        "Mod"
+      ],
+      "key": "E"
+    }
+  ]
 }
