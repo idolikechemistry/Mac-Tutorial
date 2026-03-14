@@ -230,7 +230,7 @@ change it to
 按 `Ctrl + O` → `Enter` → `Ctrl + X` 退出。
 #### 終端機設定檔備份腳本:
 
-[backup_zsh.sh](script_backup#backup_zsh.sh)
+[backup_zsh.sh](/script_backup#backup_zsh.sh)
 
 ---
 ## 四、 輸入法與文字處理 (Input Methods)
