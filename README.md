@@ -240,7 +240,7 @@ change it to
   注音模式下輸入皆為「全形」，英文模式下皆為「半形」，在注音模式下可選取文字後點選 Menubar 中輸入法選項裡面切換全形半形。
 
 > [!NOTE]
-> 2026-02-21:已從內建注音輸入法跳槽至 [vChewing 唯音輸入法](https://vchewing.github.io/README.html)
+> 2026-02-21：已從內建注音輸入法跳槽至 [vChewing 唯音輸入法](https://vchewing.github.io/README.html)
 > 
 > 如何備份自定義辭典與設定檔請看 [vChewing_manager.sh](script_backup.md#vChewing_manager)
 
