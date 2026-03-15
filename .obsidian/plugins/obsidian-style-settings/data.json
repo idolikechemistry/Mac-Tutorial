@@ -107,10 +107,8 @@
   "Editor@@table-width": 100,
   "jay-custom-obsidian@@jay-enable-table-alt-row": true,
   "jay-custom-obsidian@@jay-enable-table-header-color": true,
-  "custom-style@@jay-enable-table-alt-row": true,
   "custom-style@@file-title-center": true,
   "custom-style@@h1-center": true,
   "custom-style@@ruby-larger": true,
-  "custom-style@@jay-enable-custom-hr": true,
   "Editor@@h1-divider-on": false
 }

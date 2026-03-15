@@ -1,5 +1,5 @@
 /* @settings
-name: custom-sytle
+name: Custom Style (專屬自定義樣式)
 id: custom-style
 settings:
   - id: layout-settings-group
@@ -27,35 +27,18 @@ settings:
     description: "開啟後，將自動放大 HTML <ruby> 標籤的注音顯示並調整行距。"
     type: class-toggle
     default: false
-  - id: jay-enable-custom-hr
-    title: "啟用自訂分隔線 (HR)"
-    description: "開啟後，可透過下方選項自訂分隔線的粗細與顏色。"
-    type: class-toggle
-    default: false
-  - id: jay-hr-thickness
-    title: "📏 分隔線粗細 (px)"
-    description: "調整分隔線的高度 (預設為 2px)"
-    type: variable-number
-    default: 2
-    format: px
-  - id: jay-hr-color
-    title: "🎨 分隔線顏色"
-    description: "選擇分隔線的顯示顏色 (預設為藍色)"
-    type: variable-color
-    format: hex
-    default: '#3EA6F0'
 
   - id: folder-settings-group
     title: "📂 資料夾配色與邊框 (手動啟用)"
     type: heading
     level: 1
     collapsed: false
-  - id: jay-enable-folder-border
+  - id: custom-enable-folder-border
     title: "啟用資料夾「多彩邊框」"
-    description: "開啟後，資料夾左側會繪製彩色边框。"
+    description: "開啟後，資料夾左側會繪製彩色邊框。"
     type: class-toggle
     default: false
-  - id: jay-enable-folder-color
+  - id: custom-enable-folder-color
     title: "啟用資料夾「文字與圖示上色」"
     description: "※ 注意：若您的佈景主題 (如 Border) 已有此功能，建議保持關閉以免衝突。"
     type: class-toggle
@@ -122,53 +105,53 @@ settings:
     type: heading
     level: 1
     collapsed: false
-  - id: jay-enable-table-alt-row
+  - id: custom-enable-table-alt-row
     title: "啟用表格交替行顏色 (斑馬紋)"
-    description: "開啟後，所有表格的單雙行將自動顯示不同背景色，增強可讀性。"
+    description: "開啟後，所有一般表格的單雙行將自動顯示不同背景色。"
     type: class-toggle
     default: false
-  - id: jay-enable-table-header-color
+  - id: custom-enable-table-header-color
     title: "啟用自訂表頭背景色"
-    description: "開啟後將覆蓋 Border 主題的表頭顏色；若保持關閉，則套用 Border 原本設定。"
+    description: "開啟後將覆蓋佈景主題的表頭顏色；若保持關閉，則套用原本設定。"
     type: class-toggle
     default: false
-  - id: jay-table-header-color-class
+  - id: custom-table-header-color-class
     title: "🎨 表頭背景配色"
     description: "為表格頭部選擇一個心儀的高級感配色，或選擇「自訂」。"
     type: class-select
     allowEmpty: false
-    default: jay-header-color-deep-gray
+    default: custom-header-color-deep-gray
     options:
       - label: "深邃灰 (Deep Gray)"
-        value: jay-header-color-deep-gray
+        value: custom-header-color-deep-gray
       - label: "石墨黑 (Graphite Black)"
-        value: jay-header-color-graphite-black
+        value: custom-header-color-graphite-black
       - label: "莫蘭迪藍 (Morandi Blue)"
-        value: jay-header-color-morandi-blue
+        value: custom-header-color-morandi-blue
       - label: "橄欖綠 (Olive Green)"
-        value: jay-header-color-olive-green
+        value: custom-header-color-olive-green
       - label: "灰豆綠 (Gray Bean Green)"
-        value: jay-header-color-gray-bean-green
+        value: custom-header-color-gray-bean-green
       - label: "墨水青 (Ink Teal)"
-        value: jay-header-color-ink-teal
+        value: custom-header-color-ink-teal
       - label: "赤陶橘 (Terracotta Orange)"
-        value: jay-header-color-terracotta-orange
+        value: custom-header-color-terracotta-orange
       - label: "杏仁黄 (Almond Yellow)"
-        value: jay-header-color-almond-yellow
+        value: custom-header-color-almond-yellow
       - label: "鼠尾草綠 (Sage Green)"
-        value: jay-header-color-sage-green
+        value: custom-header-color-sage-green
       - label: "冰川藍 (Glacier Blue)"
-        value: jay-header-color-glacier-blue
+        value: custom-header-color-glacier-blue
       - label: "煙波藍 (Smoky Blue)"
-        value: jay-header-color-smoky-blue
+        value: custom-header-color-smoky-blue
       - label: "丁香紫 (Lilac Purple)"
-        value: jay-header-color-lilac-purple
+        value: custom-header-color-lilac-purple
       - label: "煙粉色 (Dusty Rose)"
-        value: jay-header-color-dusty-rose
+        value: custom-header-color-dusty-rose
       - label: "可可棕 (Cocoa Brown)"
-        value: jay-header-color-cocoa-brown
+        value: custom-header-color-cocoa-brown
       - label: "✨ 自訂 (Custom)"
-        value: jay-header-color-custom
+        value: custom-header-color-custom
         
   - id: table-custom-colors-group
     title: "🖌️ 自訂表頭顏色專區 (點擊展開)"
@@ -181,12 +164,28 @@ settings:
     type: variable-color
     format: hex
     default: '#ffffff'
+    
+  - id: academia-custom-colors-group
+    title: "🎓 學術表格 (Academia) 專屬顏色"
+    description: "自訂 cssclasses: academia 表格的專屬底色 (此設定在淺色模式生效)。"
+    type: heading
+    level: 2
+    collapsed: true
+  - id: custom-academia-stripe-color
+    title: "交替行 (斑馬紋) 顏色"
+    type: variable-color
+    format: hex
+    default: '#ebecf1'
+  - id: custom-academia-hover-color
+    title: "滑鼠懸停 (Hover) 顏色"
+    type: variable-color
+    format: hex
+    default: '#f5f1da'
 */
 
 /* =========================================
-   1. 全域排版設定 (強化 !important 避免被覆蓋)
+   1. 全域排版設定
    ========================================= */
-
 body.file-title-center .inline-title { display: flex !important; justify-content: center !important; align-items: center !important; }
 body.h1-center div.HyperMD-header-1, body.h1-center .markdown-rendered h1 { text-align: center !important; }
 body.h2-rainbow-line .HyperMD-header.cm-header-2, body.h2-rainbow-line .markdown-rendered h2 { border-bottom: 2px solid !important; border-image: linear-gradient(to right, #ef5350, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722) 5 !important; }
@@ -194,9 +193,8 @@ body.ruby-larger ruby rt { font-size: 0.8em !important; font-weight: 450 !import
 body.ruby-larger .markdown-rendered ruby { line-height: 2.5 !important; letter-spacing: 0.03em !important; }
 
 /* =========================================
-   2. 資料夾配色與邊框 (手動啟用邏輯)
+   2. 資料夾配色與邊框
    ========================================= */
-
 .folder-scheme-neon-jewel { --folder-color-1: #6ab5d6; --folder-color-2: #d6a760; --folder-color-3: #b569d6; --folder-color-4: #d66087; --folder-color-5: #55c4a7; --folder-color-6: #6086d6; }
 .folder-scheme-nord-aurora { --folder-color-1: #d08770; --folder-color-2: #ebcb8b; --folder-color-3: #a3be8c; --folder-color-4: #88c0d0; --folder-color-5: #81a1c1; --folder-color-6: #b48ead; }
 .folder-scheme-autumn-forest { --folder-color-1: #b06a4b; --folder-color-2: #c89258; --folder-color-3: #6f7c3f; --folder-color-4: #a47c48; --folder-color-5: #8c5a47; --folder-color-6: #5e6145; }
@@ -204,104 +202,117 @@ body.ruby-larger .markdown-rendered ruby { line-height: 2.5 !important; letter-s
 .folder-scheme-rose-dream { --folder-color-1: #f6c8d7; --folder-color-2: #e8b3c5; --folder-color-3: #d89eb6; --folder-color-4: #c68ba8; --folder-color-5: #b27a97; --folder-color-6: #d4a7c0; }
 .folder-scheme-custom { --folder-color-1: var(--custom-folder-color-1); --folder-color-2: var(--custom-folder-color-2); --folder-color-3: var(--custom-folder-color-3); --folder-color-4: var(--custom-folder-color-4); --folder-color-5: var(--custom-folder-color-5); --folder-color-6: var(--custom-folder-color-6); }
 
-/* [A] 邊框渲染 */
-body.jay-enable-folder-border .nav-files-container>div>.tree-item.nav-folder>.nav-folder-title { position: relative; margin-bottom: 4px; }
-body.jay-enable-folder-border .nav-files-container>div>.tree-item.nav-folder>.nav-folder-title::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-style: solid; border-width: 1px 1px 1px 3px; border-radius: 5px; z-index: -1; }
-body.jay-enable-folder-border .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+1)>.nav-folder-title::before { border-color: var(--folder-color-1); }
-body.jay-enable-folder-border .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+2)>.nav-folder-title::before { border-color: var(--folder-color-2); }
-body.jay-enable-folder-border .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+3)>.nav-folder-title::before { border-color: var(--folder-color-3); }
-body.jay-enable-folder-border .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+4)>.nav-folder-title::before { border-color: var(--folder-color-4); }
-body.jay-enable-folder-border .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+5)>.nav-folder-title::before { border-color: var(--folder-color-5); }
-body.jay-enable-folder-border .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+6)>.nav-folder-title::before { border-color: var(--folder-color-6); }
+body.custom-enable-folder-border .nav-files-container>div>.tree-item.nav-folder>.nav-folder-title { position: relative; margin-bottom: 4px; }
+body.custom-enable-folder-border .nav-files-container>div>.tree-item.nav-folder>.nav-folder-title::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-style: solid; border-width: 1px 1px 1px 3px; border-radius: 5px; z-index: -1; }
+body.custom-enable-folder-border .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+1)>.nav-folder-title::before { border-color: var(--folder-color-1); }
+body.custom-enable-folder-border .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+2)>.nav-folder-title::before { border-color: var(--folder-color-2); }
+body.custom-enable-folder-border .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+3)>.nav-folder-title::before { border-color: var(--folder-color-3); }
+body.custom-enable-folder-border .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+4)>.nav-folder-title::before { border-color: var(--folder-color-4); }
+body.custom-enable-folder-border .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+5)>.nav-folder-title::before { border-color: var(--folder-color-5); }
+body.custom-enable-folder-border .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+6)>.nav-folder-title::before { border-color: var(--folder-color-6); }
 
-/* [B] 文字渲染 */
-body.jay-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+1)>.nav-folder-title .nav-folder-title-content { color: var(--folder-color-1); }
-body.jay-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+1)>.nav-folder-title .iconize-icon svg { stroke: var(--folder-color-1); }
-body.jay-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+2)>.nav-folder-title .nav-folder-title-content { color: var(--folder-color-2); }
-body.jay-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+2)>.nav-folder-title .iconize-icon svg { stroke: var(--folder-color-2); }
-body.jay-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+3)>.nav-folder-title .nav-folder-title-content { color: var(--folder-color-3); }
-body.jay-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+3)>.nav-folder-title .iconize-icon svg { stroke: var(--folder-color-3); }
-body.jay-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+4)>.nav-folder-title .nav-folder-title-content { color: var(--folder-color-4); }
-body.jay-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+4)>.nav-folder-title .iconize-icon svg { stroke: var(--folder-color-4); }
-body.jay-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+5)>.nav-folder-title .nav-folder-title-content { color: var(--folder-color-5); }
-body.jay-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+5)>.nav-folder-title .iconize-icon svg { stroke: var(--folder-color-5); }
-body.jay-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+6)>.nav-folder-title .nav-folder-title-content { color: var(--folder-color-6); }
-body.jay-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+6)>.nav-folder-title .iconize-icon svg { stroke: var(--folder-color-6); }
-
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+1)>.nav-folder-title .nav-folder-title-content { color: var(--folder-color-1); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+1)>.nav-folder-title .iconize-icon svg { stroke: var(--folder-color-1); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+2)>.nav-folder-title .nav-folder-title-content { color: var(--folder-color-2); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+2)>.nav-folder-title .iconize-icon svg { stroke: var(--folder-color-2); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+3)>.nav-folder-title .nav-folder-title-content { color: var(--folder-color-3); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+3)>.nav-folder-title .iconize-icon svg { stroke: var(--folder-color-3); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+4)>.nav-folder-title .nav-folder-title-content { color: var(--folder-color-4); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+4)>.nav-folder-title .iconize-icon svg { stroke: var(--folder-color-4); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+5)>.nav-folder-title .nav-folder-title-content { color: var(--folder-color-5); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+5)>.nav-folder-title .iconize-icon svg { stroke: var(--folder-color-5); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+6)>.nav-folder-title .nav-folder-title-content { color: var(--folder-color-6); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+6)>.nav-folder-title .iconize-icon svg { stroke: var(--folder-color-6); }
 
 /* =========================================
-   3. 表格全域配色與功能 (由 Style Settings 控制)
+   3. 表格全域配色與功能
    ========================================= */
+.custom-header-color-deep-gray { --custom-table-header-bg: #f1f3f5; }
+.custom-header-color-graphite-black { --custom-table-header-bg: #e9ecef; }
+.custom-header-color-morandi-blue { --custom-table-header-bg: #dbe4ff; }
+.custom-header-color-olive-green { --custom-table-header-bg: #e9ecef; }
+.custom-header-color-gray-bean-green { --custom-table-header-bg: #eaede4; }
+.custom-header-color-ink-teal { --custom-table-header-bg: #e0eff0; }
+.custom-header-color-terracotta-orange { --custom-table-header-bg: #fbe9e2; }
+.custom-header-color-almond-yellow { --custom-table-header-bg: #fcf6e7; }
+.custom-header-color-sage-green { --custom-table-header-bg: #eff5e9; }
+.custom-header-color-glacier-blue { --custom-table-header-bg: #e8f5f8; }
+.custom-header-color-smoky-blue { --custom-table-header-bg: #e6eef4; }
+.custom-header-color-lilac-purple { --custom-table-header-bg: #f3e8f0; }
+.custom-header-color-dusty-rose { --custom-table-header-bg: #f5eaf5; }
+.custom-header-color-cocoa-brown { --custom-table-header-bg: #f2ebe9; }
+.custom-header-color-custom { --custom-table-header-bg: var(--custom-table-header-bg); }
 
-.jay-header-color-deep-gray { --jay-table-header-bg: #f1f3f5; }
-.jay-header-color-graphite-black { --jay-table-header-bg: #e9ecef; }
-.jay-header-color-morandi-blue { --jay-table-header-bg: #dbe4ff; }
-.jay-header-color-olive-green { --jay-table-header-bg: #e9ecef; }
-.jay-header-color-gray-bean-green { --jay-table-header-bg: #eaede4; }
-.jay-header-color-ink-teal { --jay-table-header-bg: #e0eff0; }
-.jay-header-color-terracotta-orange { --jay-table-header-bg: #fbe9e2; }
-.jay-header-color-almond-yellow { --jay-table-header-bg: #fcf6e7; }
-.jay-header-color-sage-green { --jay-table-header-bg: #eff5e9; }
-.jay-header-color-glacier-blue { --jay-table-header-bg: #e8f5f8; }
-.jay-header-color-smoky-blue { --jay-table-header-bg: #e6eef4; }
-.jay-header-color-lilac-purple { --jay-table-header-bg: #f3e8f0; }
-.jay-header-color-dusty-rose { --jay-table-header-bg: #f5eaf5; }
-.jay-header-color-cocoa-brown { --jay-table-header-bg: #f2ebe9; }
-.jay-header-color-custom { --jay-table-header-bg: var(--custom-table-header-bg); }
+body.custom-enable-table-header-color .markdown-rendered table th { background-color: var(--custom-table-header-bg) !important; }
 
-/* --- 表頭顏色覆蓋 --- */
-body.jay-enable-table-header-color .markdown-rendered table th {
-    background-color: var(--jay-table-header-bg) !important;
-}
+body.custom-enable-table-alt-row .markdown-rendered table tbody tr:nth-child(even) td { background-color: rgba(0, 0, 0, 0.05) !important; }
+body.theme-dark.custom-enable-table-alt-row .markdown-rendered table tbody tr:nth-child(even) td { background-color: rgba(255, 255, 255, 0.08) !important; }
 
-/* --- 交替行顏色 (斑馬紋) --- */
-body.jay-enable-table-alt-row .markdown-rendered table tbody tr:nth-child(even) td {
-    background-color: rgba(0, 0, 0, 0.05) !important;
-}
-body.theme-dark.jay-enable-table-alt-row .markdown-rendered table tbody tr:nth-child(even) td {
-    background-color: rgba(255, 255, 255, 0.08) !important;
-}
-
-/* 表格懸停效果 (增強質感) */
-body.jay-enable-table-alt-row .markdown-rendered table tbody tr:hover td {
-    background-color: rgba(0, 0, 0, 0.09) !important;
-}
-body.theme-dark.jay-enable-table-alt-row .markdown-rendered table tbody tr:hover td {
-    background-color: rgba(255, 255, 255, 0.12) !important;
-}
-
+body.custom-enable-table-alt-row .markdown-rendered table tbody tr:hover td { background-color: rgba(0, 0, 0, 0.09) !important; }
+body.theme-dark.custom-enable-table-alt-row .markdown-rendered table tbody tr:hover td { background-color: rgba(255, 255, 255, 0.12) !important; }
 
 /* =========================================
    4. 獨立表格樣式 (由 cssclasses 控制)
    ========================================= */
 
-/* [A] 學術表格 (cssclasses: academia) */
+/* [A] 學術表格 (cssclasses: academia) - 原版精確排版 + 智慧線條 + 變數化自訂色 */
 .academia table {
     width: 100% !important;
+    max-width: var(--file-line-width) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: table !important;
     border-collapse: collapse !important;
     border-top: 2.27px solid var(--text-normal) !important;
     border-bottom: 2.27px solid var(--text-normal) !important;
 }
-.academia th {
+
+.academia th,
+.academia td {
     border: none !important;
-    border-bottom: 1.36px solid var(--text-normal) !important;
-    background-color: transparent !important; 
-    font-weight: bold !important;
+    padding: 0.51rem !important;
+    line-height: 1.1 !important;
 }
-.academia td { border: none !important; }
-.academia tr:nth-child(even) td { background-color: rgba(128, 128, 128, 0.1) !important; }
+
+.academia thead th {
+    background-color: white !important;
+    font-weight: 700 !important;
+    padding: 8px 9px 5px 9px !important;
+    border-bottom: 1.36px solid var(--text-normal) !important;
+}
+
+.academia table > tbody > tr:first-child > td,
+.academia table > tbody > tr:first-child > th {
+    border-top: 1.36px solid var(--text-normal) !important;
+}
+
+.academia table > tbody > tr:last-child > td,
+.academia table > tbody > tr:last-child > th {
+    border-bottom: 1.36px solid var(--text-normal) !important;
+}
+
+/* 替換為變數的雙數行底色 (預設為原版的淺灰 #ebecf1) */
+.academia tr:nth-child(even) td {
+    background-color: var(--custom-academia-stripe-color, #ebecf1) !important;
+}
+
+/* 替換為變數的米黃色懸停效果 (預設為原版的 #f5f1da) */
+.academia tbody tr:hover td {
+    background-color: var(--custom-academia-hover-color, #f5f1da) !important;
+}
+
+/* --- 深色模式背景色相容處理 --- */
+.theme-dark .academia thead th {
+    background-color: #1e1e1e !important;
+}
+.theme-dark .academia tr:nth-child(even) td {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+}
+.theme-dark .academia tbody tr:hover td {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+}
 
 /* [B] 全寬表格 (cssclasses: wide-table) */
-.wide-table table {
-    width: 100% !important;
-    max-width: 100% !important;
-    display: table !important;
-}
-.wide-table .markdown-preview-section {
-    overflow-x: visible !important;
-}
-.wide-table .cm-line.HyperMD-table-row {
-    width: 100% !important;
-    max-width: 100% !important;
-    display: block;
-}
+.wide-table table { width: 100% !important; max-width: 100% !important; display: table !important; }
+.wide-table .markdown-preview-section { overflow-x: visible !important; }
+.wide-table .cm-line.HyperMD-table-row { width: 100% !important; max-width: 100% !important; display: block; }
