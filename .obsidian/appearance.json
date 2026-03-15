@@ -4,8 +4,10 @@
   "enabledCssSnippets": [
     "my-obsidian",
     "dividing line customize",
-    "custom-style"
+    "custom-style",
+    "enhanced-math-style"
   ],
   "theme": "obsidian",
-  "showViewHeader": true
+  "showViewHeader": true,
+  "nativeMenus": true
 }

@@ -1,6 +1,10 @@
 {
-  "showInlineTitle": false,
-  "promptDelete": false,
+  "showInlineTitle": true,
+  "promptDelete": true,
   "attachmentFolderPath": "./附件",
-  "useMarkdownLinks": true
+  "useMarkdownLinks": true,
+  "newLinkFormat": "absolute",
+  "alwaysUpdateLinks": true,
+  "showUnsupportedFiles": true,
+  "trashOption": "local"
 }
