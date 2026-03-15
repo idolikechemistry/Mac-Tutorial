@@ -39,6 +39,12 @@
       "icon": "lucide-refresh-cw",
       "name": "Templater: Insert Cmd-reload-page",
       "mode": "any"
+    },
+    {
+      "id": "workspace:toggle-pin",
+      "icon": "lucide-pin",
+      "name": "釘選切換",
+      "mode": "any"
     }
   ],
   "macros": [],

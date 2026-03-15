@@ -24,16 +24,6 @@
       "icon": "eraser"
     },
     {
-      "id": "editing-toolbar:header2-text",
-      "name": "Header 2",
-      "icon": "header-2"
-    },
-    {
-      "id": "editing-toolbar:header3-text",
-      "name": "Header 3",
-      "icon": "header-3"
-    },
-    {
       "id": "SubmenuCommands-header",
       "name": "submenu",
       "icon": "header-n",
@@ -42,6 +32,16 @@
           "id": "editing-toolbar:header1-text",
           "name": "Header 1",
           "icon": "header-1"
+        },
+        {
+          "id": "editing-toolbar:header2-text",
+          "name": "Header 2",
+          "icon": "header-2"
+        },
+        {
+          "id": "editing-toolbar:header3-text",
+          "name": "Header 3",
+          "icon": "header-3"
         },
         {
           "id": "editing-toolbar:header4-text",
@@ -58,7 +58,8 @@
           "name": "Header 6",
           "icon": "header-6"
         }
-      ]
+      ],
+      "menuType": "dropdown"
     },
     {
       "id": "editing-toolbar:toggle-bold",

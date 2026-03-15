@@ -11,8 +11,9 @@
 
 ### 1.1 Allow open Unidentified App from Anywhere
 
-功能：允許開啟「任何來源」的應用程式。
-在「終端機.app」
+**功能：允許開啟「任何來源」的應用程式。**
+
+在「終端機.app」中輸入：
 
 ```bash
 sudo spctl --master-disable
