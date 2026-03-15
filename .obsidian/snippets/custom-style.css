@@ -312,22 +312,3 @@ body.theme-dark.jay-enable-table-alt-row .markdown-rendered table tbody tr:hover
    ========================================= */
 mjx-container[jax="CHTML"] { font-family: "STIX Two Math", serif !important; }
 
-
-/* =========================================
-   6. 全域分隔線強化 (由 Style Settings 手動啟用)
-   ========================================= */
-/* 完全使用原版的溫和寫法，不加 !important，避免推翻 Border 介面設定 */
-body.custom-enable-hr hr {
-    border: none;
-    height: var(--custom-hr-thickness, 2px);
-    border-top: var(--custom-hr-thickness, 2px) solid;
-    border-color: var(--custom-hr-color, #3EA6F0);
-    margin: 2rem 0;
-}
-
-body.custom-enable-hr .markdown-rendered hr {
-    border: none;
-    height: var(--custom-hr-thickness, 2px);
-    border-top: var(--custom-hr-thickness, 2px) solid;
-    border-color: var(--custom-hr-color, #3EA6F0);
-}

@@ -2,7 +2,10 @@
   "cssTheme": "Border",
   "baseFontSize": 16,
   "enabledCssSnippets": [
-    "my-obsidian"
+    "my-obsidian",
+    "dividing line customize",
+    "custom-style"
   ],
-  "theme": "obsidian"
+  "theme": "obsidian",
+  "showViewHeader": true
 }
