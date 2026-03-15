@@ -2,15 +2,7 @@
   "cssTheme": "Border",
   "baseFontSize": 16,
   "enabledCssSnippets": [
-    "dividing line customize",
-    "enhanced-math-style",
-    "File title center",
-    "full-width-tables",
-    "Header-1 align center",
-    "Latex table",
-    "lyric-top",
-    "ruby-size",
-    "tableStyles"
+    "my-obsidian"
   ],
   "theme": "obsidian"
 }
