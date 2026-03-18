@@ -12,14 +12,14 @@
   "enable_system_commands": true,
   "shell_path": "",
   "user_scripts_folder": "",
-  "enable_folder_templates": false,
+  "enable_folder_templates": true,
   "folder_templates": [
     {
       "folder": "",
       "template": ""
     }
   ],
-  "enable_file_templates": true,
+  "enable_file_templates": false,
   "file_templates": [
     {
       "regex": ".*",
@@ -31,8 +31,6 @@
   "enabled_templates_hotkeys": [
     "Template/Cmd-reload-page.md"
   ],
-  "startup_templates": [
-    ""
-  ],
+  "startup_templates": [],
   "intellisense_render": 1
 }
