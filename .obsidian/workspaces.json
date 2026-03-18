@@ -12,7 +12,6 @@
               {
                 "id": "e7a7b303c61786dc",
                 "type": "leaf",
-                "pinned": true,
                 "state": {
                   "type": "markdown",
                   "state": {
@@ -20,21 +19,8 @@
                     "mode": "source",
                     "source": false
                   },
-                  "pinned": true,
                   "icon": "lucide-file",
                   "title": "README"
-                }
-              },
-              {
-                "id": "bdc4bd0a16636355",
-                "type": "leaf",
-                "pinned": true,
-                "state": {
-                  "type": "style-settings",
-                  "state": {},
-                  "pinned": true,
-                  "icon": "gear",
-                  "title": "Style Settings"
                 }
               }
             ]
@@ -103,7 +89,7 @@
           {
             "id": "3a743465bc8973bf",
             "type": "tabs",
-            "dimension": 68.19221967963387,
+            "dimension": 47.48283752860412,
             "children": [
               {
                 "id": "7b180908a68d4ac5",
@@ -153,43 +139,13 @@
                   "icon": "lucide-archive",
                   "title": "所有屬性"
                 }
-              },
-              {
-                "id": "7d1f1686209088db",
-                "type": "leaf",
-                "state": {
-                  "type": "outline",
-                  "state": {
-                    "file": "README.md",
-                    "followCursor": false,
-                    "showSearch": false,
-                    "searchQuery": ""
-                  },
-                  "icon": "lucide-list",
-                  "title": "README 的大綱"
-                }
-              },
-              {
-                "id": "bd69cf4e1c4aa9d5",
-                "type": "leaf",
-                "pinned": true,
-                "state": {
-                  "type": "footnotes",
-                  "state": {
-                    "file": "README.md"
-                  },
-                  "pinned": true,
-                  "icon": "lucide-file-signature",
-                  "title": "註腳"
-                }
               }
-            ],
-            "currentTab": 4
+            ]
           },
           {
             "id": "6221ec1999872319",
             "type": "tabs",
-            "dimension": 31.80778032036613,
+            "dimension": 52.517162471395885,
             "children": [
               {
                 "id": "c5e441b91d23938d",
@@ -223,12 +179,40 @@
                   "icon": "links-going-out",
                   "title": "README 的對外連結"
                 }
+              },
+              {
+                "id": "7d1f1686209088db",
+                "type": "leaf",
+                "state": {
+                  "type": "outline",
+                  "state": {
+                    "file": "README.md",
+                    "followCursor": false,
+                    "showSearch": false,
+                    "searchQuery": ""
+                  },
+                  "icon": "lucide-list",
+                  "title": "README 的大綱"
+                }
+              },
+              {
+                "id": "bd69cf4e1c4aa9d5",
+                "type": "leaf",
+                "state": {
+                  "type": "footnotes",
+                  "state": {
+                    "file": "README.md"
+                  },
+                  "icon": "lucide-file-signature",
+                  "title": "註腳"
+                }
               }
-            ]
+            ],
+            "currentTab": 2
           }
         ],
         "direction": "horizontal",
-        "width": 300
+        "width": 200
       },
       "left-ribbon": {
         "hiddenItems": {
@@ -238,7 +222,6 @@
           "switcher:開啟快速切換": true,
           "graph:查看關聯圖": false,
           "markdown-importer:開啟 Markdown 格式轉換器": false,
-          "canvas:建立新畫布": true,
           "daily-notes:開啟今天的每日筆記": true,
           "templates:插入模板": true,
           "command-palette:開啟命令面板": false,
@@ -250,7 +233,7 @@
         }
       },
       "active": "e7a7b303c61786dc",
-      "mtime": "2026-03-15T22:40:52+08:00"
+      "mtime": "2026-03-18T22:13:37+08:00"
     }
   },
   "active": "README"
