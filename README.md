@@ -257,7 +257,7 @@ change it to
 - [`vChewing_manager.sh`](Scripts/vChewing_manager.sh) (備份路徑)
   腳本內的 `BACKUP_ROOT` 預設為 `$HOME/my_documents/Github/my_vChewing-dic`。請務必將其修改為您自己希望存放備份的本地路徑。
 
-- [`dl-mp4.sh`](Scripts/dl-mp4.sh (Cookie 路徑)
+- [`dl-mp4.sh`](Scripts/dl-mp4.sh) (Cookie 路徑)
   針對 Bilibili 下載的 Cookie 讀取路徑預設為 `/opt/homebrew/yt-dlp_cookie_bilibili.txt`。若您不是使用 Apple Silicon Mac 或是存放位置不同，請更改 `COOKIES_FILE` 的路徑。
 
 - [`backup_zsh.sh`](Scripts/backup_zsh.sh) (iCloud 依賴)
