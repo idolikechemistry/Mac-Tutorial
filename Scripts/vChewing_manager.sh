@@ -4,8 +4,8 @@
 # 📂 唯音輸入法 (vChewing) 備份路徑設定區
 # ==========================================
 APP_ID="org.atelierInmu.inputmethod.vChewing"
-BACKUP_ROOT="/Users/jay/my_documents/Github/my_vChewing-dic"
-SRC_DATA="/Users/jay/Library/Containers/org.atelierInmu.inputmethod.vChewing/Data/Library/Application Support/vChewing"
+BACKUP_ROOT="$HOME/my_documents/Github/my_vChewing-dic"
+SRC_DATA="$HOME/Library/Containers/org.atelierInmu.inputmethod.vChewing/Data/Library/Application Support/vChewing"
 SRC_PREF="$HOME/Library/Preferences/${APP_ID}.plist"
 
 # ==========================================
