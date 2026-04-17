@@ -4,7 +4,6 @@
 # @raycast.title Open btop in Tab (Auto Top-Right)
 # @raycast.mode silent
 # @raycast.description Open btop and dynamically calculate top-right corner.
-# @raycast.author i-has-a-dat-GG
 
 osascript -e '
 -- 1. 跟 Finder 拿當前螢幕的寬度

@@ -252,6 +252,24 @@ change it to
 > chmod +x ~/Mac-set/Scripts/*.sh
 > ```
 
+本專案的腳本最初是基於作者個人的 macOS (Apple Silicon) 環境與使用習慣所撰寫。若您下載或 Clone 此專案至您的電腦使用，請在執行前打開相應的 `.sh` 腳本，並根據您的環境修改以下**個人化路徑（Hardcoded Paths）**，以免執行報錯：
+
+- [`vChewing_manager.sh`](Scripts/vChewing_manager.sh) (備份路徑)
+  腳本內的 `BACKUP_ROOT` 預設為 `$HOME/my_documents/Github/my_vChewing-dic`。請務必將其修改為您自己希望存放備份的本地路徑。
+
+- [`dl-mp4.sh`](Scripts/dl-mp4.sh (Cookie 路徑)
+  針對 Bilibili 下載的 Cookie 讀取路徑預設為 `/opt/homebrew/yt-dlp_cookie_bilibili.txt`。若您不是使用 Apple Silicon Mac 或是存放位置不同，請更改 `COOKIES_FILE` 的路徑。
+
+- [`backup_zsh.sh`](Scripts/backup_zsh.sh) (iCloud 依賴)
+  腳本預設會將終端機設定檔備份到 macOS iCloud 的「文字編輯」資料夾（`$HOME/Library/Mobile Documents/...`）。
+  若您沒有啟用 iCloud Drive 或想存在本地，請修改 `DEST_DIR` 變數。
+
+- [`krokiet.sh`](Scripts/krokiet.sh) (App 執行檔名稱)
+  預設喚醒的應用程式名稱帶有特定的硬體編譯後綴（`mac_krokiet_skia_vulkan_heif_avif_arm64`）。
+  如果您使用的是一般常規安裝版本，建議將腳本內容直接改為通用的 `open -a "Krokiet"`。
+  
+*(註：部分腳本帶有 `@raycast.author` 的 Raycast Metadata 標記，純屬作者原始配置，不影響終端機直接執行。)*
+
 | 腳本檔名                                                             | 主要功能                                                       | 依賴工具                                                  |
 | ---------------------------------------------------------------- | ---------------------------------------------------------- | ----------------------------------------------------- |
 | [`backup_zsh.sh`](Scripts/backup_zsh.sh)                         | 備份 `~/.zshrc` 和 `~/.p10k.zsh` 到 iCloud TextEdit 文件資料夾      | 內建 Bash 工具                                            |
@@ -560,7 +578,7 @@ brew install create_ap
 
 ```bash
 # 執行建立熱點 (格式：sudo create_ap <分享出去的網卡> <來源網卡> <SSID> <密碼>)
-sudo create_ap en0 en5 MyRealHotspot mysecurepassword
+sudo create_ap en0 en5 <熱點名字> <熱點密碼>
 ```
 
 > [!WARNING]

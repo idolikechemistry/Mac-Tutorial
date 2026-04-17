@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # @raycast.title YouTube Audio Downloader
-# @raycast.author Jay
 # @raycast.description 下載 YouTube 音訊為 mp3 或 m4a，先偵測 chapters[]，再由使用者選擇是否嵌入（單支影片+m4a）
 # @raycast.mode compact
 

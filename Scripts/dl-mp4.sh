@@ -425,19 +425,18 @@ if [[ ${#SRT_FILES[@]} -gt 0 ]]; then
     
     # ... (Language code detection logic remains unchanged) ...
     lang_full=$(basename "$srt_file" .srt | rev | cut -d. -f1 | rev)
-    if [[ "$lang_full" == "zh-Hant" ]]; then
-      lang_code="zht" # Traditional Chinese (Common in MP4)
-    elif [[ "$lang_full" == "zh-Hans" ]]; then
-      lang_code="zho" # Simplified Chinese (ISO 639-2)
-    elif [[ "$lang_full" == "en" ]]; then
-      lang_code="eng"
-    elif [[ "$lang_full" == "ja" ]]; then
-      lang_code="jpn"
-    elif [[ "$lang_full" == "zh" ]]; then
-      lang_code="zho"
-    else
-      lang_code="${lang_full:0:3}" # Fallback: Take first three characters
-    fi
+    case "$lang_full" in
+      zh-Hant)
+        lang_code="zht" ;; # Traditional Chinese (Common in MP4)
+      zh-Hans|zh)
+        lang_code="zho" ;; # Simplified Chinese (ISO 639-2)
+      en)
+        lang_code="eng" ;;
+      ja)
+        lang_code="jpn" ;;
+      *)
+        lang_code="${lang_full:0:3}" ;; # Fallback: Take first three characters
+    esac
     
     FFMPEG_CODECS+=( -metadata:s:s:${FFMPEG_SUB_STREAMS} "language=${lang_code}" )
     FFMPEG_SUB_STREAMS=$((FFMPEG_SUB_STREAMS + 1))
