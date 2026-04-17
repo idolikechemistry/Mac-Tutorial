@@ -11,12 +11,12 @@ settings:
     title: "檔案名稱置中"
     description: "開啟後，頁面最上方的檔案名稱將自動置中。"
     type: class-toggle
-    default: false
+    default: true
   - id: h1-center
     title: "一級標題 (H1) 置中"
     description: "開啟後，筆記中的 # 一級標題將自動置中。"
     type: class-toggle
-    default: false
+    default: true
   - id: h2-rainbow-line
     title: "二級標題 (H2) 彩虹底線"
     description: "開啟後，筆記中的 ## 二級標題下方會出現彩虹分隔線。"
@@ -26,7 +26,7 @@ settings:
     title: "放大注音 (Furigana)"
     description: "開啟後，將自動放大 HTML <ruby> 標籤的注音顯示並調整行距。"
     type: class-toggle
-    default: false
+    default: true
 
   - id: folder-settings-group
     title: "📂 資料夾配色與邊框 (手動啟用)"
@@ -48,8 +48,10 @@ settings:
     description: "選擇預設主題，或選擇「自訂」來套用下方【自訂顏色專區】的色碼。"
     type: class-select
     allowEmpty: false
-    default: folder-scheme-neon-jewel
+    default: folder-scheme-border-rainbow
     options:
+      - label: "🌈 Border 經典彩虹 (Border Rainbow)"
+        value: folder-scheme-border-rainbow
       - label: "霓虹寶石 (Neon Jewel)"
         value: folder-scheme-neon-jewel
       - label: "北境極光 (Nord Aurora)"
@@ -99,6 +101,16 @@ settings:
     type: variable-color
     format: hex
     default: '#6086d6'
+  - id: custom-folder-color-7
+    title: "自訂顏色 7"
+    type: variable-color
+    format: hex
+    default: '#b5d66a'
+  - id: custom-folder-color-8
+    title: "自訂顏色 8"
+    type: variable-color
+    format: hex
+    default: '#d68a60'
 
   - id: table-settings-group
     title: "📊 表格全域配色與功能"
@@ -109,7 +121,7 @@ settings:
     title: "啟用表格交替行顏色 (斑馬紋)"
     description: "開啟後，所有一般表格的單雙行將自動顯示不同背景色。"
     type: class-toggle
-    default: false
+    default: true
   - id: custom-enable-table-header-color
     title: "啟用自訂表頭背景色"
     description: "開啟後將覆蓋佈景主題的表頭顏色；若保持關閉，則套用原本設定。"
@@ -181,6 +193,17 @@ settings:
     type: variable-color
     format: hex
     default: '#f5f1da'
+
+  - id: image-settings-group
+    title: "🖼️ 圖片全域設定"
+    type: heading
+    level: 1
+    collapsed: false
+  - id: svg-dark-mode-invert
+    title: "深色模式 SVG 自動反色"
+    description: "開啟後，在深色模式下會自動將 SVG 圖片的黑色線條轉換為白色。"
+    type: class-toggle
+    default: true
 */
 
 /* =========================================
@@ -193,36 +216,43 @@ body.ruby-larger ruby rt { font-size: 0.8em !important; font-weight: 450 !import
 body.ruby-larger .markdown-rendered ruby { line-height: 2.5 !important; letter-spacing: 0.03em !important; }
 
 /* =========================================
-   2. 資料夾配色與邊框
+   2. 資料夾配色與邊框 (升級為 8 循環)
    ========================================= */
-.folder-scheme-neon-jewel { --folder-color-1: #6ab5d6; --folder-color-2: #d6a760; --folder-color-3: #b569d6; --folder-color-4: #d66087; --folder-color-5: #55c4a7; --folder-color-6: #6086d6; }
-.folder-scheme-nord-aurora { --folder-color-1: #d08770; --folder-color-2: #ebcb8b; --folder-color-3: #a3be8c; --folder-color-4: #88c0d0; --folder-color-5: #81a1c1; --folder-color-6: #b48ead; }
-.folder-scheme-autumn-forest { --folder-color-1: #b06a4b; --folder-color-2: #c89258; --folder-color-3: #6f7c3f; --folder-color-4: #a47c48; --folder-color-5: #8c5a47; --folder-color-6: #5e6145; }
-.folder-scheme-deep-ocean { --folder-color-1: #526D82; --folder-color-2: #738a9a; --folder-color-3: #9DB2BF; --folder-color-4: #b8c4ce; --folder-color-5: #7c909e; --folder-color-6: #5e7686; }
-.folder-scheme-rose-dream { --folder-color-1: #f6c8d7; --folder-color-2: #e8b3c5; --folder-color-3: #d89eb6; --folder-color-4: #c68ba8; --folder-color-5: #b27a97; --folder-color-6: #d4a7c0; }
-.folder-scheme-custom { --folder-color-1: var(--custom-folder-color-1); --folder-color-2: var(--custom-folder-color-2); --folder-color-3: var(--custom-folder-color-3); --folder-color-4: var(--custom-folder-color-4); --folder-color-5: var(--custom-folder-color-5); --folder-color-6: var(--custom-folder-color-6); }
+.folder-scheme-border-rainbow { --folder-color-1: var(--color-red); --folder-color-2: var(--color-orange); --folder-color-3: var(--color-yellow); --folder-color-4: var(--color-green); --folder-color-5: var(--color-cyan); --folder-color-6: var(--color-blue); --folder-color-7: var(--color-purple); --folder-color-8: var(--color-pink); }
+.folder-scheme-neon-jewel { --folder-color-1: #6ab5d6; --folder-color-2: #d6a760; --folder-color-3: #b569d6; --folder-color-4: #d66087; --folder-color-5: #55c4a7; --folder-color-6: #6086d6; --folder-color-7: #b5d66a; --folder-color-8: #d68a60; }
+.folder-scheme-nord-aurora { --folder-color-1: #d08770; --folder-color-2: #ebcb8b; --folder-color-3: #a3be8c; --folder-color-4: #88c0d0; --folder-color-5: #81a1c1; --folder-color-6: #b48ead; --folder-color-7: #bf616a; --folder-color-8: #5e81ac; }
+.folder-scheme-autumn-forest { --folder-color-1: #b06a4b; --folder-color-2: #c89258; --folder-color-3: #6f7c3f; --folder-color-4: #a47c48; --folder-color-5: #8c5a47; --folder-color-6: #5e6145; --folder-color-7: #b58900; --folder-color-8: #cb4b16; }
+.folder-scheme-deep-ocean { --folder-color-1: #526D82; --folder-color-2: #738a9a; --folder-color-3: #9DB2BF; --folder-color-4: #b8c4ce; --folder-color-5: #7c909e; --folder-color-6: #5e7686; --folder-color-7: #3A506B; --folder-color-8: #1C2541; }
+.folder-scheme-rose-dream { --folder-color-1: #f6c8d7; --folder-color-2: #e8b3c5; --folder-color-3: #d89eb6; --folder-color-4: #c68ba8; --folder-color-5: #b27a97; --folder-color-6: #d4a7c0; --folder-color-7: #eebecb; --folder-color-8: #d98cb3; }
+.folder-scheme-custom { --folder-color-1: var(--custom-folder-color-1); --folder-color-2: var(--custom-folder-color-2); --folder-color-3: var(--custom-folder-color-3); --folder-color-4: var(--custom-folder-color-4); --folder-color-5: var(--custom-folder-color-5); --folder-color-6: var(--custom-folder-color-6); --folder-color-7: var(--custom-folder-color-7); --folder-color-8: var(--custom-folder-color-8); }
 
 body.custom-enable-folder-border .nav-files-container>div>.tree-item.nav-folder>.nav-folder-title { position: relative; margin-bottom: 4px; }
 body.custom-enable-folder-border .nav-files-container>div>.tree-item.nav-folder>.nav-folder-title::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-style: solid; border-width: 1px 1px 1px 3px; border-radius: 5px; z-index: -1; }
-body.custom-enable-folder-border .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+1)>.nav-folder-title::before { border-color: var(--folder-color-1); }
-body.custom-enable-folder-border .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+2)>.nav-folder-title::before { border-color: var(--folder-color-2); }
-body.custom-enable-folder-border .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+3)>.nav-folder-title::before { border-color: var(--folder-color-3); }
-body.custom-enable-folder-border .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+4)>.nav-folder-title::before { border-color: var(--folder-color-4); }
-body.custom-enable-folder-border .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+5)>.nav-folder-title::before { border-color: var(--folder-color-5); }
-body.custom-enable-folder-border .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+6)>.nav-folder-title::before { border-color: var(--folder-color-6); }
+body.custom-enable-folder-border .nav-files-container>div>.tree-item.nav-folder:nth-child(8n+1)>.nav-folder-title::before { border-color: var(--folder-color-1); }
+body.custom-enable-folder-border .nav-files-container>div>.tree-item.nav-folder:nth-child(8n+2)>.nav-folder-title::before { border-color: var(--folder-color-2); }
+body.custom-enable-folder-border .nav-files-container>div>.tree-item.nav-folder:nth-child(8n+3)>.nav-folder-title::before { border-color: var(--folder-color-3); }
+body.custom-enable-folder-border .nav-files-container>div>.tree-item.nav-folder:nth-child(8n+4)>.nav-folder-title::before { border-color: var(--folder-color-4); }
+body.custom-enable-folder-border .nav-files-container>div>.tree-item.nav-folder:nth-child(8n+5)>.nav-folder-title::before { border-color: var(--folder-color-5); }
+body.custom-enable-folder-border .nav-files-container>div>.tree-item.nav-folder:nth-child(8n+6)>.nav-folder-title::before { border-color: var(--folder-color-6); }
+body.custom-enable-folder-border .nav-files-container>div>.tree-item.nav-folder:nth-child(8n+7)>.nav-folder-title::before { border-color: var(--folder-color-7); }
+body.custom-enable-folder-border .nav-files-container>div>.tree-item.nav-folder:nth-child(8n+8)>.nav-folder-title::before { border-color: var(--folder-color-8); }
 
-body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+1)>.nav-folder-title .nav-folder-title-content { color: var(--folder-color-1); }
-body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+1)>.nav-folder-title .iconize-icon svg { stroke: var(--folder-color-1); }
-body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+2)>.nav-folder-title .nav-folder-title-content { color: var(--folder-color-2); }
-body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+2)>.nav-folder-title .iconize-icon svg { stroke: var(--folder-color-2); }
-body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+3)>.nav-folder-title .nav-folder-title-content { color: var(--folder-color-3); }
-body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+3)>.nav-folder-title .iconize-icon svg { stroke: var(--folder-color-3); }
-body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+4)>.nav-folder-title .nav-folder-title-content { color: var(--folder-color-4); }
-body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+4)>.nav-folder-title .iconize-icon svg { stroke: var(--folder-color-4); }
-body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+5)>.nav-folder-title .nav-folder-title-content { color: var(--folder-color-5); }
-body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+5)>.nav-folder-title .iconize-icon svg { stroke: var(--folder-color-5); }
-body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+6)>.nav-folder-title .nav-folder-title-content { color: var(--folder-color-6); }
-body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(6n+6)>.nav-folder-title .iconize-icon svg { stroke: var(--folder-color-6); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(8n+1)>.nav-folder-title .nav-folder-title-content { color: var(--folder-color-1); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(8n+1)>.nav-folder-title .iconize-icon svg { stroke: var(--folder-color-1); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(8n+2)>.nav-folder-title .nav-folder-title-content { color: var(--folder-color-2); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(8n+2)>.nav-folder-title .iconize-icon svg { stroke: var(--folder-color-2); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(8n+3)>.nav-folder-title .nav-folder-title-content { color: var(--folder-color-3); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(8n+3)>.nav-folder-title .iconize-icon svg { stroke: var(--folder-color-3); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(8n+4)>.nav-folder-title .nav-folder-title-content { color: var(--folder-color-4); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(8n+4)>.nav-folder-title .iconize-icon svg { stroke: var(--folder-color-4); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(8n+5)>.nav-folder-title .nav-folder-title-content { color: var(--folder-color-5); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(8n+5)>.nav-folder-title .iconize-icon svg { stroke: var(--folder-color-5); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(8n+6)>.nav-folder-title .nav-folder-title-content { color: var(--folder-color-6); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(8n+6)>.nav-folder-title .iconize-icon svg { stroke: var(--folder-color-6); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(8n+7)>.nav-folder-title .nav-folder-title-content { color: var(--folder-color-7); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(8n+7)>.nav-folder-title .iconize-icon svg { stroke: var(--folder-color-7); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(8n+8)>.nav-folder-title .nav-folder-title-content { color: var(--folder-color-8); }
+body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:nth-child(8n+8)>.nav-folder-title .iconize-icon svg { stroke: var(--folder-color-8); }
 
 /* =========================================
    3. 表格全域配色與功能
@@ -246,16 +276,16 @@ body.custom-enable-folder-color .nav-files-container>div>.tree-item.nav-folder:n
 body.custom-enable-table-header-color .markdown-rendered table th { background-color: var(--custom-table-header-bg) !important; }
 
 body.custom-enable-table-alt-row .markdown-rendered table tbody tr:nth-child(even) td { background-color: rgba(0, 0, 0, 0.05) !important; }
-body.theme-dark.custom-enable-table-alt-row .markdown-rendered table tbody tr:nth-child(even) td { background-color: rgba(255, 255, 255, 0.08) !important; }
+body.theme-dark.custom-enable-table-alt-row .markdown-rendered table tbody tr:nth-child(even) td { background-color: rgba(0, 0, 0, 0.12) !important; }
 
 body.custom-enable-table-alt-row .markdown-rendered table tbody tr:hover td { background-color: rgba(0, 0, 0, 0.09) !important; }
-body.theme-dark.custom-enable-table-alt-row .markdown-rendered table tbody tr:hover td { background-color: rgba(255, 255, 255, 0.12) !important; }
+body.theme-dark.custom-enable-table-alt-row .markdown-rendered table tbody tr:hover td { background-color: rgba(0, 0, 0, 0.2) !important; }
 
 /* =========================================
    4. 獨立表格樣式 (由 cssclasses 控制)
    ========================================= */
 
-/* [A] 學術表格 (cssclasses: academia) - 原版精確排版 + 智慧線條 + 變數化自訂色 */
+/* [A] 學術表格 (cssclasses: academia) */
 .academia table {
     width: 100% !important;
     max-width: var(--file-line-width) !important;
@@ -291,28 +321,32 @@ body.theme-dark.custom-enable-table-alt-row .markdown-rendered table tbody tr:ho
     border-bottom: 1.36px solid var(--text-normal) !important;
 }
 
-/* 替換為變數的雙數行底色 (預設為原版的淺灰 #ebecf1) */
 .academia tr:nth-child(even) td {
     background-color: var(--custom-academia-stripe-color, #ebecf1) !important;
 }
 
-/* 替換為變數的米黃色懸停效果 (預設為原版的 #f5f1da) */
 .academia tbody tr:hover td {
     background-color: var(--custom-academia-hover-color, #f5f1da) !important;
 }
 
 /* --- 深色模式背景色相容處理 --- */
-.theme-dark .academia thead th {
-    background-color: #1e1e1e !important;
-}
-.theme-dark .academia tr:nth-child(even) td {
-    background-color: rgba(255, 255, 255, 0.04) !important;
-}
-.theme-dark .academia tbody tr:hover td {
-    background-color: rgba(255, 255, 255, 0.08) !important;
-}
+.theme-dark .academia thead th { background-color: #1e1e1e !important; }
+.theme-dark .academia tr:nth-child(even) td { background-color: rgba(255, 255, 255, 0.04) !important; }
+.theme-dark .academia tbody tr:hover td { background-color: rgba(255, 255, 255, 0.08) !important; }
 
 /* [B] 全寬表格 (cssclasses: wide-table) */
 .wide-table table { width: 100% !important; max-width: 100% !important; display: table !important; }
 .wide-table .markdown-preview-section { overflow-x: visible !important; }
 .wide-table .cm-line.HyperMD-table-row { width: 100% !important; max-width: 100% !important; display: block; }
+
+/* =========================================
+   5. 圖片全域設定 (SVG 自動負片反色 - 極簡無 Hover 版)
+   ========================================= */
+/* 涵蓋所有包含 svg 字眼的圖片來源與容器 */
+body.svg-dark-mode-invert.theme-dark img[src*="svg" i],
+body.svg-dark-mode-invert.theme-dark .internal-embed[src*=".svg" i] img,
+body.svg-dark-mode-invert.theme-dark span[src*=".svg" i] img {
+    /* 採用穩定易維護的負片效果：翻轉明度產生淺灰色，並旋轉色相維持相對色彩 */
+    filter: invert(85%) hue-rotate(180deg) !important;
+    mix-blend-mode: normal !important; 
+}
