@@ -174,7 +174,7 @@ brew bundle --file=~/Desktop/Brewfile
 > ```bash
 > brew list > ~/Desktop/brew-formula-list.txt
 > ```
-> ---
+> 
 > ```bash
 > brew list --cask > ~/Desktop/brew-cask-list.txt
 > ```
@@ -235,7 +235,7 @@ change it to
 
 > [!IMPORTANT]
 > **環境配置 (環境變數)：**
-> 為了能執行這些腳本，請在 `~/.zshrc` 中加入以下路徑：
+> 為了能執行這些腳本，請在 `~/.zshrc` 中加入路徑：
 > ```bash
 > nano ~/.zshrc
 > ```
@@ -251,16 +251,16 @@ change it to
 > chmod +x ~/Mac-set/Scripts/*.sh
 > ```
 
-| 腳本檔名                                                             | 主要功能                                                  | 依賴工具                                                  |
-| ---------------------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| [`backup_zsh.sh`](Scripts/backup_zsh.sh)                         | 備份 `~/.zshrc` 和 `~/.p10k.zsh` 到 iCloud TextEdit 文件資料夾 | 內建 Bash 工具                                            |
-| [`dl-audio.sh`](Scripts/dl-audio.sh)                             | 下載 YouTube 音訊並可選擇 mp3 或 m4a，支援 chapters 嵌入            | `yt-dlp`, `ffmpeg`, `jq`                              |
-| [`dl-mp4.sh`](Scripts/dl-mp4.sh)                                 | 下載影片/音訊、處理字幕、輸出兼容格式（mp4/mkv）                          | `yt-dlp`, `ffmpeg`, `ffprobe`, `jq`, 可選 `danmaku2ass` |
-| [`embed_youtube_chapters.sh`](Scripts/embed_youtube_chapters.sh) | 從 YouTube 下載章節 metadata，並將章節與封面嵌入指定影片/音訊檔             | `yt-dlp`, `ffmpeg`, `jq`                              |
-| [`krokiet.sh`](Scripts/krokiet.sh)                               | 啟動 Krokiet macOS 應用程式                                 | `macOS Terminal` / `bash`                             |
-| [`lyrics-md2srt.sh`](Scripts/lyrics-md2srt.sh)                   | 將帶時間戳記的歌詞 Markdown 轉換為 SRT 字幕檔                        | `awk`                                                 |
-| [`terminal-btop-90*26.sh`](Scripts/terminal-btop-90*26.sh)       | 透過 AppleScript 開啟 Terminal 並在右上角運行 `btop`             | `osascript`, `btop`, Terminal.app                     |
-| [`vChewing_manager.sh`](Scripts/vChewing_manager.sh)             | 備份/還原 vChewing 詞庫與設定，並推送/拉取 GitHub                    | `git`, `defaults`, `pkill`, `bash`                    |
+| 腳本檔名                                                             | 主要功能                                                       | 依賴工具                                                  |
+| ---------------------------------------------------------------- | ---------------------------------------------------------- | ----------------------------------------------------- |
+| [`backup_zsh.sh`](Scripts/backup_zsh.sh)                         | 備份 `~/.zshrc` 和 `~/.p10k.zsh` 到 iCloud TextEdit 文件資料夾      | 內建 Bash 工具                                            |
+| [`dl-audio.sh`](Scripts/dl-audio.sh)                             | 下載 YouTube 音訊並可選擇 mp3 或 m4a，支援 chapters 嵌入                 | `yt-dlp`, `ffmpeg`, `jq`                              |
+| [`dl-mp4.sh`](Scripts/dl-mp4.sh)                                 | 下載影片/音訊、處理字幕、輸出兼容格式（mp4/mkv）                               | `yt-dlp`, `ffmpeg`, `ffprobe`, `jq`, 可選 `danmaku2ass` |
+| [`embed_youtube_chapters.sh`](Scripts/embed_youtube_chapters.sh) | 從 YouTube 下載章節 metadata，並將章節與封面嵌入指定影片/音訊檔                  | `yt-dlp`, `ffmpeg`, `jq`                              |
+| [`krokiet.sh`](Scripts/krokiet.sh)                               | 啟動 [Krokiet](https://github.com/qarmin/czkawka) macOS 應用程式 | `macOS Terminal` / `bash`                             |
+| [`lyrics-md2srt.sh`](Scripts/lyrics-md2srt.sh)                   | 將帶時間戳記的歌詞 Markdown 轉換為 SRT 字幕檔                             | `awk`                                                 |
+| [`terminal-btop-90*26.sh`](Scripts/terminal-btop-90*26.sh)       | 透過 AppleScript 開啟 Terminal 並在右上角運行 `btop`                  | `osascript`, `btop`, Terminal.app                     |
+| [`vChewing_manager.sh`](Scripts/vChewing_manager.sh)             | 備份/還原 vChewing 詞庫與設定，並推送/拉取 GitHub                         | `git`, `defaults`, `pkill`, `bash`                    |
 
 > [!NOTE] 
 > - [`dl-mp4.sh`](Scripts/dl-mp4.sh) 會基於網址自動檢測來源並嘗試使用瀏覽器 cookie 或 cookies.txt。
@@ -281,7 +281,7 @@ change it to
   注音模式下輸入皆為「全形」，英文模式下皆為「半形」，在注音模式下可選取文字後點選 Menubar 中輸入法選項裡面切換全形半形。
 
 > [!NOTE]
-> 2026-02-21：已從內建注音輸入法跳槽至 [vChewing 唯音輸入法](https://vchewing.github.io/README.html)
+> 2026-02-21：已從內建注音輸入法跳槽至 [vChewing 唯音輸入法](https://github.com/vChewing/vChewing-macOS)
 > 
 > 如何備份自定義辭典與設定檔參考：[vChewing_manager.sh](Scripts/vChewing_manager.sh)
 
@@ -489,12 +489,10 @@ youtube.com##+js(set, Object.prototype.hasAllowedInstreamAd, true)
 networksetup -listallhardwareports
 ```
 
-
 * **查看 Wi-Fi 詳細狀態：**
 ```bash
 sudo wdutil NOTE
 ```
-
 
 *(檢查輸出中是否包含 `Op Mode: HOSTAP`、正確的 `SSID` 以及 `IPv4 Address: 192.168.2.1`)*
 * **列出目前是否有裝置連上 (NAT 網段)：**
@@ -502,12 +500,10 @@ sudo wdutil NOTE
 arp -a
 ```
 
-
 * **檢查是否有活躍的 NAT 路由：**
 ```bash
 netstat -an | grep 192.168.2
 ```
-
 
 ### 6.3 常見異常與系統級清理
 
@@ -516,7 +512,9 @@ netstat -an | grep 192.168.2
 
 ```bash
 sudo launchctl bootout system /System/Library/LaunchDaemons/com.apple.InternetSharing.plist 2>/dev/null
+```
 
+```
 sudo launchctl bootstrap system /System/Library/LaunchDaemons/com.apple.InternetSharing.plist
 ```
 
@@ -532,11 +530,22 @@ sudo launchctl bootstrap system /System/Library/LaunchDaemons/com.apple.Internet
 > 若上述方法皆無效，可強制刪除相關的 `.plist` 設定檔並重開機（**注意：這會清空部分網路設定，請謹慎使用**）：
 > ```bash
 > sudo rm /Library/Preferences/SystemConfiguration/com.apple.nat.plist
+> ```
+>
+> ```bash
 > sudo rm /Library/Preferences/SystemConfiguration/preferences.plist
+> ```
+>
+> ```bash
 > sudo rm /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist
+> ```
+>
+> ```bash
 > sudo rm /Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist
+> ```
+>
+> ```bash
 > sudo reboot
-> 
 > ```
 
 ### 6.4 替代方案：使用 `create_ap` (CLI 手動建立熱點)
@@ -546,7 +555,9 @@ sudo launchctl bootstrap system /System/Library/LaunchDaemons/com.apple.Internet
 ```bash
 # 安裝 create_ap
 brew install create_ap
+```
 
+```bash
 # 執行建立熱點 (格式：sudo create_ap <分享出去的網卡> <來源網卡> <SSID> <密碼>)
 sudo create_ap en0 en5 MyRealHotspot mysecurepassword
 ```
@@ -554,4 +565,3 @@ sudo create_ap en0 en5 MyRealHotspot mysecurepassword
 > [!WARNING]
 > 備註：向 Apple 回報 Bug
 > 該問題曾在 macOS 15.3.2 發生過。若遇到 `Wi-Fi enters HOSTAP mode but no SSID is broadcast...` 的狀況，可至 [Apple Feedback Assistant](https://feedbackassistant.apple.com) 提交回報。
-
