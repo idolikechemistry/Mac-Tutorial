@@ -16,6 +16,7 @@ Thumbs.db
 # =========================
 # 排除工作區快照（避免頻繁產生 Git 衝突）
 .obsidian/workspace.json
+.obsidian/workspaces.json
 .obsidian/workspace-mobile.json
 .obsidian/graph.json
 # 排除筆記庫內的垃圾桶
