@@ -1,10 +1,53 @@
-# MacOS
+# =========================
+# macOS 系統自動生成檔案
+# =========================
 .DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+.fseventsd
 Thumbs.db
 
-# Obsidian
+# =========================
+# Obsidian 相關設定
+# =========================
+# 排除工作區快照（避免頻繁產生 Git 衝突）
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
-.obsidian/plugins/ / *.log# Logs
-
+.obsidian/graph.json
+# 排除筆記庫內的垃圾桶
 .trash/
+# 排除插件產生的日誌檔
+.obsidian/plugins/**/*.log
+
+# =========================
+# 文字編輯器與開發工具
+# =========================
+# Vim / Nano 暫存檔
+*.swp
+*~
+*.bak
+*.un~
+
+# VS Code 設定（若不需要同步個人編輯器偏好）
+.vscode/
+
+# =========================
+# 腳本執行與暫存
+# =========================
+*.log
+tmp/
+temp/
+out/
+dist/
+
+# =========================
+# 其他建議排除
+# =========================
+# 排除敏感資訊（如 API Key，如果未來有寫這類腳本的話）
+.env
+*.key
+*.pem
