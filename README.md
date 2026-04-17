@@ -9,11 +9,11 @@
 ---
 ## 大綱：
 - [一、系統核心與安全性設定](#一系統核心與安全性設定-system--security)
-- [二、操作介面與視覺優化](#二-操作介面與視覺優化-ui--ux)
+- [二、操作介面與視覺優化](#二操作介面與視覺優化-ui--ux)
 - [三、開發環境建置](#三-開發環境建置-development-environment)
-- [四、輸入法與文字處理](#四-輸入法與文字處理-input-methods)
-- [五、瀏覽器](#五-browsers)
-- [六、Mac 熱點分享與除錯](#六-mac-熱點分享與除錯-internet-sharing)
+- [四、輸入法與文字處理](#四輸入法與文字處理-input-methods)
+- [五、瀏覽器](#五browsers)
+- [六、Mac 熱點分享與除錯](#六mac-熱點分享與除錯-internet-sharing)
 
 ---
 ## 一、系統核心與安全性設定 (System & Security)
