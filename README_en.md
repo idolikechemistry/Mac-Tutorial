@@ -18,7 +18,7 @@
 - [6. Mac Internet Sharing & Debugging](#6-mac-internet-sharing--debugging-internet-sharing)
 
 ---
-## 1. System Core & Security Settings (System & Security)
+## 1. System Core & Security Settings
 
 ### 1.1 Allow Opening Unidentified Apps
 
@@ -79,7 +79,7 @@ chflags nohidden <path>
 ```
 
 ---
-## 2. UI & UX Optimization (UI & UX)
+## 2. UI & UX Optimization
 
 ### 2.1 Launchpad and Dock Management
 
@@ -138,7 +138,7 @@ To restore the shadow effect, change `true` to `false`.
 ![](https://pub-b63c6b5d1dd94defbe208492cf21033f.r2.dev/Launchpad-3-20250420.png)
 
 ---
-## 3. Development Environment Setup (Development Environment)
+## 3. Development Environment Setup
 
 ### 3.1 Homebrew
 
@@ -270,17 +270,17 @@ Press `Ctrl + O` → `Enter` then `Ctrl + X` to save and exit.
 
 The scripts in this project were originally written based on the author's personal macOS (Apple Silicon) environment and usage habits. If you download or clone this project to your computer, please open the corresponding `.sh` scripts before execution and modify the following **Hardcoded Paths** according to your environment to avoid execution errors:
 
-- `vChewing_manager.sh` (Backup Path)
+- `vChewing_manager.sh` : **Backup Path**
   The `BACKUP_ROOT` in the script defaults to `$HOME/my_documents/Github/my_vChewing-dic` . Be sure to change it to the local path where you want to store your backups.
 
-- `dl-mp4.sh` (Cookie Path)
+- `dl-mp4.sh` : **Cookie Path**
   The default Cookie read path for Bilibili downloads is `/opt/homebrew/yt-dlp_cookie_bilibili.txt` . If you are not using an Apple Silicon Mac or the storage location is different, please change the path of `COOKIES_FILE` .
 
-- `backup_zsh.sh` (iCloud Dependency)
+- `backup_zsh.sh` : **iCloud Dependency**
   By default, the script backs up terminal configuration files to the "TextEdit" folder in macOS iCloud ( `$HOME/Library/Mobile Documents/...` ).
   If you do not have iCloud Drive enabled or want to save locally, please modify the `DEST_DIR` variable.
 
-- `krokiet.sh` (App Executable Name)
+- `krokiet.sh` : **App Executable Name**
   The default application name to wake up has a specific hardware compilation suffix ( `mac_krokiet_skia_vulkan_heif_avif_arm64` ).
   If you are using a standard installation version, it is recommended to change the script content directly to the generic `open -a "Krokiet"` .
   
@@ -506,11 +506,9 @@ Enter `about:config` in the Firefox address bar:
    * **Channel:** Recommended to choose `6` or `11`
    * **Security:** `WPA2/WPA3 Personal`
    * **Password:** Enter an 8+ character password
-
-
 4. Return to the Sharing settings screen and turn on the "Internet Sharing" switch.
 5. Upon successful activation, the Wi-Fi icon in the status bar will change:
-![](https://pub-b63c6b5d1dd94defbe208492cf21033f.r2.dev/mac-hotspot-share.png)
+![84](https://pub-b63c6b5d1dd94defbe208492cf21033f.r2.dev/mac-hotspot-share.png)
 
 ### 6.2 Terminal Debugging Commands (CLI Status Check)
 

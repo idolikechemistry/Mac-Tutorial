@@ -503,8 +503,6 @@ youtube.com##+js(set, Object.prototype.hasAllowedInstreamAd, true)
    * **頻道：** 建議選擇 `6` 或 `11`
    * **安全性：** `WPA2/WPA3 個人`
    * **密碼：** 輸入 8 碼以上密碼
-
-
 4. 返回共享設定畫面，開啟「網際網路共享」開關。
 5. 成功啟動時，狀態列的 Wi-Fi 圖示會改變：
 ![](https://pub-b63c6b5d1dd94defbe208492cf21033f.r2.dev/mac-hotspot-share.png)
