@@ -2,6 +2,8 @@
 ---
 
 > [!NOTE] 
+> [English Version](README_en.md)
+> 
 > 本文件紀錄 MacOS 的系統調教及常用 App 配置。
 > 
 > Updated at 2026-04-18
@@ -18,7 +20,7 @@
 ---
 ## 一、系統核心與安全性設定 (System & Security)
 
-### 1.1 Allow open Unidentified App from Anywhere
+### 1.1 Allow Opening Unidentified Apps
 
 **功能：允許開啟「任何來源」的應用程式。**
 
@@ -180,7 +182,7 @@ brew bundle --file=~/Desktop/Brewfile
 > brew list --cask > ~/Desktop/brew-cask-list.txt
 > ```
 
-### 3.2 Terminal setting
+### 3.2 Terminal Configuration
 
 _(進行以下每個操作後都需 `source ~/.zshrc` 後才會生效)_
 ###### Oh-My-Zsh
