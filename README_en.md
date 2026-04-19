@@ -170,9 +170,11 @@ This command will record all installed **Formulae (CLI packages)** and **Casks (
 
 1. Place the previously backed up `Brewfile` on the new computer (e.g. on the desktop `~/Desktop/Brewfile`)
 2. Execute the following command in Terminal:
+
 ```bash
 brew bundle --file=~/Desktop/Brewfile
 ```
+
 - This command will automatically install all software and packages in the `Brewfile`, including command-line tools (formulae) and applications (casks).
 
 > [!TIP]
@@ -189,12 +191,12 @@ brew bundle --file=~/Desktop/Brewfile
 ### 3.2 Terminal Configuration
 
 _(After performing each of the following operations, you need to run `source ~/.zshrc` for them to take effect)_
-###### Oh-My-Zsh
+#### Oh-My-Zsh
 
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
-###### Powerlevel10k
+#### Powerlevel10k
 
 ```bash
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
@@ -213,17 +215,17 @@ then
 p10k configure
 ```
 An interactive configuration wizard will launch. Follow the on-screen prompts (e.g., "**Does this look like a** diamond **(rotated square)?**") to customize your terminal appearance.
-###### jetbrains-mono-nerd-font
+#### jetbrains-mono-nerd-font
 
 ```bash
 brew install --cask font-jetbrains-mono-nerd-font
 ```
-###### zsh-autosuggestions
+#### zsh-autosuggestions
 
 ```bash
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 ```
-###### zsh-syntax-highlighting
+#### zsh-syntax-highlighting
 
 ```bash
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
@@ -338,8 +340,9 @@ Enter `about:config` in the Firefox address bar:
 | browser.tabs.closeWindowWithLastTab |        false        |
 ### 5.3 Enhancer for YouTube
 
-> [!NOTE]-
+> [!NOTE]
 > 2025-10-23 at Arc
+
 <details><summary>Click to expand Arc browser JSON settings</summary>
 
 ```json
@@ -478,6 +481,7 @@ Enter `about:config` in the Firefox address bar:
 
 > [!NOTE]
 > 2025-10-23 at Firefox
+
 <details><summary>Click to expand Firefox browser JSON settings</summary>
 
 ```json
@@ -505,8 +509,7 @@ Enter `about:config` in the Firefox address bar:
    * **Security:** `WPA2/WPA3 Personal`
    * **Password:** Enter an 8+ character password
 4. Return to the Sharing settings screen and turn on the "Internet Sharing" switch.
-5. Upon successful activation, the Wi-Fi icon in the status bar will change:
-![84](https://pub-b63c6b5d1dd94defbe208492cf21033f.r2.dev/mac-hotspot-share.png)
+5. Upon successful activation, the Wi-Fi icon in the status bar will change: ![84](https://pub-b63c6b5d1dd94defbe208492cf21033f.r2.dev/mac-hotspot-share.png)
 
 ### 6.2 Terminal Debugging Commands (CLI Status Check)
 

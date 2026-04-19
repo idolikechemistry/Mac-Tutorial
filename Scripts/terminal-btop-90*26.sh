@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @raycast.schemaVersion 1
-# @raycast.title Open btop in Tab (Auto Top-Right)
+# @raycast.title Open btop in Terminal
 # @raycast.mode silent
 # @raycast.description Open btop and dynamically calculate top-right corner.
 
