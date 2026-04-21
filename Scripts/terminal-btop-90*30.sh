@@ -24,13 +24,13 @@ tell application "Terminal"
     end if
     delay 0.5
     set number of columns of window 1 to 90
-    set number of rows of window 1 to 26
+    set number of rows of window 1 to 30
 end tell
 
 -- 3. 動態計算位置並移動
 tell application "System Events"
     tell process "Terminal"
-        -- 取得剛剛設定好 80x24 的視窗實際寬度 (包含外框)
+        -- 取得剛剛設定好 90x30 的視窗實際寬度 (包含外框)
         set winSize to size of window 1
         set winWidth to item 1 of winSize
         

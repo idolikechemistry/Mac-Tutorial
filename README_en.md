@@ -259,16 +259,16 @@ Press `Ctrl + O` → `Enter` then `Ctrl + X` to save and exit.
 > chmod +x ~/Mac-set/Scripts/*.sh
 > ```
 
-| Script Name                                                             | Main Function                                                      | Dependencies                                              |
-| ---------------------------------------------------------------- | ---------------------------------------------------------- | ----------------------------------------------------- |
-| [`backup_zsh.sh`](Scripts/backup_zsh.sh)                         | Backup `~/.zshrc` and `~/.p10k.zsh` to iCloud TextEdit document folder      | Built-in Bash tools                                            |
-| [`dl-audio.sh`](Scripts/dl-audio.sh)                             | Download YouTube audio and choose mp3 or m4a, supports embedding chapters                 | `yt-dlp`, `ffmpeg`, `jq`                              |
-| [`dl-mp4.sh`](Scripts/dl-mp4.sh)                                 | Download video/audio, process subtitles, output compatible formats (mp4/mkv)                               | `yt-dlp`, `ffmpeg`, `ffprobe`, `jq`, optional `danmaku2ass` |
-| [`embed_youtube_chapters.sh`](Scripts/embed_youtube_chapters.sh) | Download chapter metadata from YouTube, and embed chapters and cover into specified video/audio files                  | `yt-dlp`, `ffmpeg`, `jq`                              |
-| [`krokiet.sh`](Scripts/krokiet.sh)                               | Launch Krokiet macOS application | `macOS Terminal` / `bash`                             |
-| [`lyrics-md2srt.sh`](Scripts/lyrics-md2srt.sh)                   | Convert timestamped lyrics Markdown to SRT subtitle file                             | `awk`                                                 |
-| [`terminal-btop-90*26.sh`](Scripts/terminal-btop-90*26.sh)       | Open Terminal via AppleScript and run `btop` in the top right corner                  | `osascript`, `btop`, Terminal.app                     |
-| [`vChewing_manager.sh`](Scripts/vChewing_manager.sh)             | Backup/restore vChewing dictionary and settings, and push/pull to GitHub                         | `git`, `defaults`, `pkill`, `bash`                    |
+| Script Name                                                      | Main Function                                                                                         | Dependencies                                                |
+| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| [`backup_zsh.sh`](Scripts/backup_zsh.sh)                         | Backup `~/.zshrc` and `~/.p10k.zsh` to iCloud TextEdit document folder                                | Built-in Bash tools                                         |
+| [`dl-audio.sh`](Scripts/dl-audio.sh)                             | Download YouTube audio and choose mp3 or m4a, supports embedding chapters                             | `yt-dlp`, `ffmpeg`, `jq`                                    |
+| [`dl-mp4.sh`](Scripts/dl-mp4.sh)                                 | Download video/audio, process subtitles, output compatible formats (mp4/mkv)                          | `yt-dlp`, `ffmpeg`, `ffprobe`, `jq`, optional `danmaku2ass` |
+| [`embed_youtube_chapters.sh`](Scripts/embed_youtube_chapters.sh) | Download chapter metadata from YouTube, and embed chapters and cover into specified video/audio files | `yt-dlp`, `ffmpeg`, `jq`                                    |
+| [`krokiet.sh`](Scripts/krokiet.sh)                               | Launch Krokiet macOS application                                                                      | `macOS Terminal` / `bash`                                   |
+| [`lyrics-md2srt.sh`](Scripts/lyrics-md2srt.sh)                   | Convert timestamped lyrics Markdown to SRT subtitle file                                              | `awk`                                                       |
+| [`terminal-btop-90*30.sh`](Scripts/terminal-btop-90*30.sh)       | Open Terminal via AppleScript and run `btop` in the top right corner                                  | `osascript`, `btop`, Terminal.app                           |
+| [`vChewing_manager.sh`](Scripts/vChewing_manager.sh)             | Backup/restore vChewing dictionary and settings, and push/pull to GitHub                              | `git`, `defaults`, `pkill`, `bash`                          |
 
 The scripts in this project were originally written based on the author's personal macOS (Apple Silicon) environment and usage habits. If you download or clone this project to your computer, please open the corresponding `.sh` scripts before execution and modify the following **Hardcoded Paths** according to your environment to avoid execution errors:
 
