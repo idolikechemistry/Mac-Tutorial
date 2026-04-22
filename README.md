@@ -1,4 +1,4 @@
- # 與電腦的戰鬥記錄
+# 與電腦的戰鬥記錄
 ---
 
 > [!NOTE] 
@@ -153,6 +153,10 @@ brew bundle dump --describe --force --file="$HOME/Library/Mobile Documents/com~a
 這個指令會把所有已安裝的 **Formula(CLI 套件)** 和 **Cask(圖形化 App)** 記錄下來，儲存在 iCloud 的下載資料夾內
 `~/Library/Mobile Documents/com~apple~CloudDocs/Downloads`
 
+> [!NOTE]
+> 💡 **路徑修改提醒**
+> 上述指令會將清單備份至 iCloud 雲碟。若您沒有啟用 iCloud 或是其他系統使用者，請自行將指令中的路徑替換為本地端路徑（例如 `~/Desktop/Brewfile`）。
+
 #### 3.1.2 在新電腦安裝 Homebrew
 
 1. 開啟 Terminal，輸入 Homebrew 官方安裝指令：
@@ -166,11 +170,9 @@ brew bundle dump --describe --force --file="$HOME/Library/Mobile Documents/com~a
 
 1. 將之前備份的 `Brewfile` 放入新電腦（例如放到桌面上 `~/Desktop/Brewfile`）
 2. 在 Terminal 執行以下指令：
-
 ```bash
 brew bundle --file=~/Desktop/Brewfile
 ```
-
 - 這個指令會自動安裝所有在 `Brewfile` 裡的軟體與套件，包括 command-line 工具（formula）與應用程式（cask）
 
 > [!TIP]
@@ -187,12 +189,12 @@ brew bundle --file=~/Desktop/Brewfile
 ### 3.2 Terminal Configuration
 
 _(進行以下每個操作後都需 `source ~/.zshrc` 後才會生效)_
-#### Oh-My-Zsh
+###### Oh-My-Zsh
 
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
-#### Powerlevel10k
+###### Powerlevel10k
 
 ```bash
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
@@ -212,17 +214,17 @@ p10k configure
 ```
 這時會自動跳出一個**互動式設定介面**。
 它會問：「你看得到鑽石符號嗎？」、「你看得到鎖頭嗎？」跟著一步一步選擇自己想要的介面即可。
-#### jetbrains-mono-nerd-font
+###### jetbrains-mono-nerd-font
 
 ```bash
 brew install --cask font-jetbrains-mono-nerd-font
 ```
-#### zsh-autosuggestions
+###### zsh-autosuggestions
 
 ```bash
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 ```
-#### zsh-syntax-highlighting
+###### zsh-syntax-highlighting
 
 ```bash
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
@@ -269,17 +271,17 @@ change it to
 
 本專案的腳本最初是基於作者個人的 macOS (Apple Silicon) 環境與使用習慣所撰寫。若您下載或 Clone 此專案至您的電腦使用，請在執行前打開相應的 `.sh` 腳本，並根據您的環境修改以下**個人化路徑（Hardcoded Paths）**，以免執行報錯：
 
-- [`vChewing_manager.sh`](Scripts/vChewing_manager.sh) ： **備份路徑**
+- [`vChewing_manager.sh`](Scripts/vChewing_manager.sh) (備份路徑)
   腳本內的 `BACKUP_ROOT` 預設為 `$HOME/my_documents/Github/my_vChewing-dic`。請務必將其修改為您自己希望存放備份的本地路徑。
 
-- [`dl-mp4.sh`](Scripts/dl-mp4.sh)： **Cookie 路徑**
+- [`dl-mp4.sh`](Scripts/dl-mp4.sh) (Cookie 路徑)
   針對 Bilibili 下載的 Cookie 讀取路徑預設為 `/opt/homebrew/yt-dlp_cookie_bilibili.txt`。若您不是使用 Apple Silicon Mac 或是存放位置不同，請更改 `COOKIES_FILE` 的路徑。
 
-- [`backup_zsh.sh`](Scripts/backup_zsh.sh)： **iCloud 路徑**
+- [`backup_zsh.sh`](Scripts/backup_zsh.sh) (iCloud 依賴)
   腳本預設會將終端機設定檔備份到 macOS iCloud 的「文字編輯」資料夾（`$HOME/Library/Mobile Documents/...`）。
   若您沒有啟用 iCloud Drive 或想存在本地，請修改 `DEST_DIR` 變數。
 
-- [`krokiet.sh`](Scripts/krokiet.sh)： **App 執行檔名稱**
+- [`krokiet.sh`](Scripts/krokiet.sh) (App 執行檔名稱)
   預設喚醒的應用程式名稱帶有特定的硬體編譯後綴（`mac_krokiet_skia_vulkan_heif_avif_arm64`）。
   如果您使用的是一般常規安裝版本，建議將腳本內容直接改為通用的 `open -a "Krokiet"`。
   
@@ -339,159 +341,159 @@ youtube.com##+js(set, Object.prototype.hasAllowedInstreamAd, true)
 
 > [!NOTE]
 > 2025-10-23 at Arc
-
-<details><summary>Click to expand Arc browser JSON settings</summary>
-
-```json
-{
-  "version": "3.0.14",
-  "settings": {
-    "applyvideofilters": false,
-    "backdropcolor": " #000000 ",
-    "backdropopacity": 85,
-    "blackbars": false,
-    "blockautoplay": false,
-    "blockhfrformats": false,
-    "blockwebmformats": false,
-    "boostvolume": false,
-    "cinemamode": false,
-    "cinemamodewideplayer": false,
-    "controlbar": {
-      "active": false,
-      "autohide": false,
-      "centered": true,
-      "position": "absolute"
-    },
-    "controls": [
-      "loop",
-      "reverse-playlist",
-      "speed-minus",
-      "speed-plus",
-      "screenshot"
-    ],
-    "controlsvisible": true,
-    "controlspeed": true,
-    "controlspeedmousebutton": false,
-    "controlvolume": false,
-    "controlvolumemousebutton": false,
-    "convertshorts": false,
-    "customcolors": {
-      "--dimmer-text": " #cccccc ",
-      "--hover-background": " #232323 ",
-      "--main-background": " #111111 ",
-      "--main-color": " #ff0033 ",
-      "--main-text": " #eff0f1 ",
-      "--second-background": " #181818 ",
-      "--shadow": " #000000 "
-    },
-    "customcss": "",
-    "customscript": "",
-    "customtheme": false,
-    "darktheme": true,
-    "date": 1745134330277,
-    "defaultvolume": false,
-    "disableautoplay": false,
-    "executescript": false,
-    "expanddescription": false,
-    "filter": "none",
-    "griditemsperrow": {
-      "channel": {
-        "shorts": {
-          "apply": false,
-          "count": 5
-        },
-        "videos": {
-          "apply": false,
-          "count": 4
-        }
-      },
-      "posts": {
-        "apply": false,
-        "count": 4
-      },
-      "shorts": {
-        "apply": false,
-        "count": 8
-      },
-      "videos": {
-        "apply": false,
-        "count": 4
-      }
-    },
-    "hidecardsendscreens": false,
-    "hidechat": false,
-    "hidecomments": false,
-    "hiderelated": false,
-    "hideshorts": false,
-    "ignoreplaylists": true,
-    "ignorepopupplayer": true,
-    "localecode": "zh_TW",
-    "localedir": "ltr",
-    "miniplayer": false,
-    "miniplayerposition": "top-left",
-    "miniplayersize": "480 x 270",
-    "newestcomments": true,
-    "overridespeeds": true,
-    "pauseforegroundtab": false,
-    "pausevideos": false,
-    "popuplayersize": "640 x 360",
-    "previousversion": "3.0.13",
-    "qualityembeds": "medium",
-    "qualityembedsfullscreen": "hd 1080",
-    "qualityplaylists": "hd 720",
-    "qualityplaylistsfullscreen": "hd 1080",
-    "qualityvideos": "hd 720",
-    "qualityvideosfullscreen": "hd 1080",
-    "reload": true,
-    "reversemousewheeldirection": false,
-    "selectquality": false,
-    "selectqualityfullscreenoff": false,
-    "selectqualityfullscreenon": false,
-    "speed": 1,
-    "speedvariation": 0.25,
-    "stopvideos": false,
-    "theatermode": false,
-    "theme": "default-dark",
-    "themevariant": "dark-red.css",
-    "update": 1761660999254,
-    "vendorthemevariant": "youtube-deep-dark.css",
-    "videofilters": {
-      "blur": 0,
-      "brightness": 100,
-      "contrast": 100,
-      "grayscale": 0,
-      "inversion": 0,
-      "saturation": 100,
-      "sepia": 0
-    },
-    "volume": 50,
-    "volumemultiplier": 2,
-    "volumevariation": 5,
-    "whatsnew": true,
-    "wideplayer": false,
-    "wideplayerviewport": false
-  }
-}
-```
-
-</details>
+> 
+> <details>
+> <summary>點擊展開 Arc 瀏覽器 JSON 設定檔</summary>
+>
+> ```json
+> {
+>   "version": "3.0.14",
+>   "settings": {
+>     "applyvideofilters": false,
+>     "backdropcolor": "#000000",
+>     "backdropopacity": 85,
+>     "blackbars": false,
+>     "blockautoplay": false,
+>     "blockhfrformats": false,
+>     "blockwebmformats": false,
+>     "boostvolume": false,
+>     "cinemamode": false,
+>     "cinemamodewideplayer": false,
+>     "controlbar": {
+>       "active": false,
+>       "autohide": false,
+>       "centered": true,
+>       "position": "absolute"
+>     },
+>     "controls": [
+>       "loop",
+>       "reverse-playlist",
+>       "speed-minus",
+>       "speed-plus",
+>       "screenshot"
+>     ],
+>     "controlsvisible": true,
+>     "controlspeed": true,
+>     "controlspeedmousebutton": false,
+>     "controlvolume": false,
+>     "controlvolumemousebutton": false,
+>     "convertshorts": false,
+>     "customcolors": {
+>       "--dimmer-text": "#cccccc",
+>       "--hover-background": "#232323",
+>       "--main-background": "#111111",
+>       "--main-color": "#ff0033",
+>       "--main-text": "#eff0f1",
+>       "--second-background": "#181818",
+>       "--shadow": "#000000"
+>     },
+>     "customcss": "",
+>     "customscript": "",
+>     "customtheme": false,
+>     "darktheme": true,
+>     "date": 1745134330277,
+>     "defaultvolume": false,
+>     "disableautoplay": false,
+>     "executescript": false,
+>     "expanddescription": false,
+>     "filter": "none",
+>     "griditemsperrow": {
+>       "channel": {
+>         "shorts": {
+>           "apply": false,
+>           "count": 5
+>         },
+>         "videos": {
+>           "apply": false,
+>           "count": 4
+>         }
+>       },
+>       "posts": {
+>         "apply": false,
+>         "count": 4
+>       },
+>       "shorts": {
+>         "apply": false,
+>         "count": 8
+>       },
+>       "videos": {
+>         "apply": false,
+>         "count": 4
+>       }
+>     },
+>     "hidecardsendscreens": false,
+>     "hidechat": false,
+>     "hidecomments": false,
+>     "hiderelated": false,
+>     "hideshorts": false,
+>     "ignoreplaylists": true,
+>     "ignorepopupplayer": true,
+>     "localecode": "zh_TW",
+>     "localedir": "ltr",
+>     "miniplayer": false,
+>     "miniplayerposition": "top-left",
+>     "miniplayersize": "480x270",
+>     "newestcomments": true,
+>     "overridespeeds": true,
+>     "pauseforegroundtab": false,
+>     "pausevideos": false,
+>     "popuplayersize": "640x360",
+>     "previousversion": "3.0.13",
+>     "qualityembeds": "medium",
+>     "qualityembedsfullscreen": "hd1080",
+>     "qualityplaylists": "hd720",
+>     "qualityplaylistsfullscreen": "hd1080",
+>     "qualityvideos": "hd720",
+>     "qualityvideosfullscreen": "hd1080",
+>     "reload": true,
+>     "reversemousewheeldirection": false,
+>     "selectquality": false,
+>     "selectqualityfullscreenoff": false,
+>     "selectqualityfullscreenon": false,
+>     "speed": 1,
+>     "speedvariation": 0.25,
+>     "stopvideos": false,
+>     "theatermode": false,
+>     "theme": "default-dark",
+>     "themevariant": "dark-red.css",
+>     "update": 1761660999254,
+>     "vendorthemevariant": "youtube-deep-dark.css",
+>     "videofilters": {
+>       "blur": 0,
+>       "brightness": 100,
+>       "contrast": 100,
+>       "grayscale": 0,
+>       "inversion": 0,
+>       "saturation": 100,
+>       "sepia": 0
+>     },
+>     "volume": 50,
+>     "volumemultiplier": 2,
+>     "volumevariation": 5,
+>     "whatsnew": true,
+>     "wideplayer": false,
+>     "wideplayerviewport": false
+>   }
+> }
+> ```
+> </details>
 
 > [!NOTE]
 > 2025-10-23 at Firefox
-
-<details><summary>Click to expand Firefox browser JSON settings</summary>
-
-```json
-{"version":"2.0.130.1","settings":{"blur":0,"brightness":100,"contrast":100,"grayscale":0,"huerotate":0,"invert":0,"saturate":100,"sepia":0,"applyvideofilters":false,"backgroundcolor":" #000000 ","backgroundopacity":85,"blackbars":false,"blockautoplay":false,"blockhfrformats":false,"blockwebmformats":false,"boostvolume":false,"cinemamode":false,"cinemamodewideplayer":false,"controlbar":{"active":false,"autohide":false,"centered":true,"position":"absolute"},"controls":["loop","reverse-playlist","speed-minus","speed-plus","screenshot"],"controlsvisible":true,"controlspeed":true,"controlspeedmousebutton":false,"controlvolume":false,"controlvolumemousebutton":false,"convertshorts":false,"customcolors":{"--main-color":" #ff0033 ","--main-background":" #111111 ","--second-background":" #181818 ","--hover-background":" #232323 ","--main-text":" #eff0f1 ","--dimmer-text":" #cccccc ","--shadow":" #000000 "},"customcssrules":"","customscript":"","customtheme":false,"darktheme":true,"date":1745134330277,"defaultvolume":false,"disableautoplay":false,"executescript":false,"expanddescription":false,"filter":"none","hidecardsendscreens":false,"hidechat":false,"hidecomments":false,"hiderelated":false,"hideshorts":false,"ignoreplaylists":true,"ignorepopupplayer":true,"localecode":"zh_TW","localedir":"ltr","message":false,"miniplayer":false,"miniplayerposition":"top-left","miniplayersize":"480 x 270","newestcomments":true,"overridespeeds":true,"pauseforegroundtab":false,"pausevideos":false,"popuplayersize":"640 x 360","qualityembeds":"medium","qualityembedsfullscreen":"hd 1080","qualityplaylists":"hd 720","qualityplaylistsfullscreen":"hd 1080","qualityvideos":"hd 720","qualityvideosfullscreen":"hd 1080","reload":false,"reversemousewheeldirection":false,"selectquality":false,"selectqualityfullscreenoff":false,"selectqualityfullscreenon":false,"speed":1,"speedvariation":0.25,"stopvideos":false,"theatermode":false,"theme":"default-dark","themevariant":"dark-red.css","update":1745134330277,"volume":50,"volumemultiplier":2,"volumevariation":5,"wideplayer":false,"wideplayerviewport":false}}
-```
-
-</details>
+> 
+> <details>
+> <summary>點擊展開 Firefox 瀏覽器 JSON 設定檔</summary>
+>
+> ```json
+> {"version":"2.0.130.1","settings":{"blur":0,"brightness":100,"contrast":100,"grayscale":0,"huerotate":0,"invert":0,"saturate":100,"sepia":0,"applyvideofilters":false,"backgroundcolor":"#000000","backgroundopacity":85,"blackbars":false,"blockautoplay":false,"blockhfrformats":false,"blockwebmformats":false,"boostvolume":false,"cinemamode":false,"cinemamodewideplayer":false,"controlbar":{"active":false,"autohide":false,"centered":true,"position":"absolute"},"controls":["loop","reverse-playlist","speed-minus","speed-plus","screenshot"],"controlsvisible":true,"controlspeed":true,"controlspeedmousebutton":false,"controlvolume":false,"controlvolumemousebutton":false,"convertshorts":false,"customcolors":{"--main-color":"#ff0033","--main-background":"#111111","--second-background":"#181818","--hover-background":"#232323","--main-text":"#eff0f1","--dimmer-text":"#cccccc","--shadow":"#000000"},"customcssrules":"","customscript":"","customtheme":false,"darktheme":true,"date":1745134330277,"defaultvolume":false,"disableautoplay":false,"executescript":false,"expanddescription":false,"filter":"none","hidecardsendscreens":false,"hidechat":false,"hidecomments":false,"hiderelated":false,"hideshorts":false,"ignoreplaylists":true,"ignorepopupplayer":true,"localecode":"zh_TW","localedir":"ltr","message":false,"miniplayer":false,"miniplayerposition":"top-left","miniplayersize":"480x270","newestcomments":true,"overridespeeds":true,"pauseforegroundtab":false,"pausevideos":false,"popuplayersize":"640x360","qualityembeds":"medium","qualityembedsfullscreen":"hd1080","qualityplaylists":"hd720","qualityplaylistsfullscreen":"hd1080","qualityvideos":"hd720","qualityvideosfullscreen":"hd1080","reload":false,"reversemousewheeldirection":false,"selectquality":false,"selectqualityfullscreenoff":false,"selectqualityfullscreenon":false,"speed":1,"speedvariation":0.25,"stopvideos":false,"theatermode":false,"theme":"default-dark","themevariant":"dark-red.css","update":1745134330277,"volume":50,"volumemultiplier":2,"volumevariation":5,"wideplayer":false,"wideplayerviewport":false}}
+> ```
+> </details>
 
 ---
 ## 六、Mac 熱點分享與除錯 (Internet Sharing)
 
 > [!NOTE]
-> 使用情境：
+> 使用情境
 > 讓 Mac 透過 **有線網路（Ethernet）** 上網，並透過 **Wi-Fi** 分享給其他裝置（如手機、iPad、筆電）使用。此章節包含 GUI 設定流程與 CLI 底層除錯紀錄。
 
 ### 6.1 透過系統介面設定 (GUI)
@@ -505,8 +507,11 @@ youtube.com##+js(set, Object.prototype.hasAllowedInstreamAd, true)
    * **頻道：** 建議選擇 `6` 或 `11`
    * **安全性：** `WPA2/WPA3 個人`
    * **密碼：** 輸入 8 碼以上密碼
+
+
 4. 返回共享設定畫面，開啟「網際網路共享」開關。
-5. 成功啟動時，狀態列的 Wi-Fi 圖示會改變：![0](https://pub-b63c6b5d1dd94defbe208492cf21033f.r2.dev/mac-hotspot-share.png)
+5. 成功啟動時，狀態列的 Wi-Fi 圖示會改變：
+![](https://pub-b63c6b5d1dd94defbe208492cf21033f.r2.dev/mac-hotspot-share.png)
 
 ### 6.2 終端機除錯指令 (CLI 檢查狀態)
 
