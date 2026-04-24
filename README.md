@@ -64,7 +64,7 @@ sudo xattr -r -c <檔案或App路徑>
 defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder
 ```
 
-若要改回預設的隱藏模式，將第一條的 TRUE 改為 FALSE 即可
+若要改回預設的隱藏模式，則將 TRUE 改為 FALSE 即可
 
 **隱藏特定資料夾：** 
 
@@ -77,6 +77,22 @@ chflags hidden <路徑>
 ```bash
 chflags nohidden <路徑>
 ```
+
+### 1.4 禁用自動生成.DS_store
+
+**禁用在外接隨身碟 / USB 裝置生成**
+
+```bash
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+```
+
+**禁用在網路磁碟機（NAS or Server）生成**
+
+```bash
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+```
+
+若要改回預設則將指令中的 true 改回 false
 
 ---
 ## 二、操作介面與視覺優化 (UI & UX)

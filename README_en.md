@@ -64,7 +64,7 @@ sudo xattr -r -c <file_or_app_path>
 defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder
 ```
 
-To change back to the default hidden mode, simply change TRUE in the first command to FALSE.
+To change back to the default hidden mode, change "true" to "false" in the commands above.
 
 **Hide specific folder:** 
 
@@ -77,6 +77,21 @@ chflags hidden <path>
 ```bash
 chflags nohidden <path>
 ```
+### 1.4 Disable Automatic Generation of .DS_Store Files
+
+**Disable generation on external drives / USB devices**
+
+```bash
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+```
+
+**Disable generation on network drives (NAS or Server)**
+
+```bash
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+```
+
+To restore the default settings, change "true" to "false" in the commands above.
 
 ---
 ## 2. UI & UX Optimization
