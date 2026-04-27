@@ -120,7 +120,7 @@ defaults write com.apple.screencapture disable-shadow -bool true; killall System
 ```
 
 To restore the shadow effect, change `true` to `false`.
-###### Built-in Shortcuts:
+#### Built-in Shortcuts:
 
 - `command (⌘) + shift (⇧) + 5`: Open interactive screenshot / screen recording tool
 

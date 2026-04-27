@@ -111,7 +111,6 @@ defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock
 ### 2.2 強制結束程式
 
 - **快捷鍵：** `cmd(⌘) + opt(⌥) + esc`
-
 ### 2.3 螢幕截圖與錄影
 
 #### 去除截圖陰影：
@@ -121,7 +120,7 @@ defaults write com.apple.screencapture disable-shadow -bool true; killall System
 ```
 
 若要恢復陰影效果，則將 `true` 改為 `false`
-###### 內建快捷鍵：
+#### 內建快捷鍵：
 
 - `command (⌘) + shift (⇧) + 5`：開啟互動式截圖 / 錄影工具
 
@@ -205,12 +204,12 @@ brew bundle --file=~/Desktop/Brewfile
 ### 3.2 Terminal Configuration
 
 _(進行以下每個操作後都需 `source ~/.zshrc` 後才會生效)_
-###### Oh-My-Zsh
+#### Oh-My-Zsh
 
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
-###### Powerlevel10k
+#### Powerlevel10k
 
 ```bash
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
@@ -230,17 +229,17 @@ p10k configure
 ```
 這時會自動跳出一個**互動式設定介面**。
 它會問：「你看得到鑽石符號嗎？」、「你看得到鎖頭嗎？」跟著一步一步選擇自己想要的介面即可。
-###### jetbrains-mono-nerd-font
+#### jetbrains-mono-nerd-font
 
 ```bash
 brew install --cask font-jetbrains-mono-nerd-font
 ```
-###### zsh-autosuggestions
+#### zsh-autosuggestions
 
 ```bash
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 ```
-###### zsh-syntax-highlighting
+#### zsh-syntax-highlighting
 
 ```bash
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
@@ -526,8 +525,7 @@ youtube.com##+js(set, Object.prototype.hasAllowedInstreamAd, true)
 
 
 4. 返回共享設定畫面，開啟「網際網路共享」開關。
-5. 成功啟動時，狀態列的 Wi-Fi 圖示會改變：
-![](https://pub-b63c6b5d1dd94defbe208492cf21033f.r2.dev/mac-hotspot-share.png)
+5. 成功啟動時，狀態列的 Wi-Fi 圖示會改變：![](https://pub-b63c6b5d1dd94defbe208492cf21033f.r2.dev/mac-hotspot-share.png)
 
 ### 6.2 終端機除錯指令 (CLI 檢查狀態)
 
