@@ -2,7 +2,7 @@
 
 # Required parameters:
 # @raycast.schemaVersion 1
-# @raycast.title YouTube / BiliBili Video Downloader
+# @raycast.title dl-mp4
 # @raycast.mode fullOutput
 # @raycast.icon 🎥
 # @raycast.description 下載影片 (v4.0.3)，支援單支影片與播放清單
