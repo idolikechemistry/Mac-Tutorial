@@ -6,16 +6,41 @@
 # @raycast.mode fullOutput
 # @raycast.icon 🎧
 # @raycast.description 下載 YouTube 音訊為 mp3 或 m4a，兼容單支影片與播放清單
-# @raycast.argument1 { "type": "text", "placeholder": "貼上 YouTube 網址", "secure": false }
+# @raycast.argument1 { "type": "text", "placeholder": "貼上網址", "secure": false }
 # @raycast.argument2 { "type": "dropdown", "placeholder": "格式選擇", "data": [{"title": "原生無損 (M4A)", "value": "m4a"}, {"title": "高相容 (MP3 320k)", "value": "mp3"}] }
 
-# Ver 20260427
+# Ver 20260427 (Amphibious Edition)
 
 set -euo pipefail
 
-# === 1. 初始化變數與環境 ===
-VIDEO_URL="$1"
-AUDIO_FORMAT="$2"
+# === 1. 初始化變數與環境 (雙棲邏輯) ===
+# 使用 ${var:-} 賦予空值預設，避免終端機裸跑時觸發 unbound variable 錯誤
+VIDEO_URL="${1:-}"
+AUDIO_FORMAT="${2:-}"
+
+# 如果 VIDEO_URL 是空的，代表這是在終端機手動執行，啟動互動模式
+if [[ -z "$VIDEO_URL" ]]; then
+  echo "🎧 歡迎使用 YouTube 音訊下載器 (Terminal 模式)"
+  read -r -p "🔗 請貼上影片或播放清單網址: " VIDEO_URL
+  
+  if [[ -z "$VIDEO_URL" ]]; then
+    echo "❌ 網址不能為空，腳本終止！"
+    exit 1
+  fi
+  
+  # 詢問格式
+  echo "🎵 請選擇目標格式："
+  echo "  [1] 原生無損 (M4A) [預設]"
+  echo "  [2] 高相容 (MP3 320k)"
+  read -r -p "請輸入數字 (1/2，直接按 Enter 為預設 1): " FORMAT_CHOICE
+  
+  if [[ "$FORMAT_CHOICE" == "2" ]]; then
+    AUDIO_FORMAT="mp3"
+  else
+    AUDIO_FORMAT="m4a"
+  fi
+fi
+
 DOWNLOADS_DIR="${HOME}/Downloads"
 
 # 檢查必要依賴 (僅需 yt-dlp 與 ffmpeg)
