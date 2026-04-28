@@ -2,11 +2,11 @@
 
 # Required parameters:
 # @raycast.schemaVersion 1
-# @raycast.title YouTube / BiliBili Video Downloader
+# @raycast.title dl-mp4
 # @raycast.mode fullOutput
 # @raycast.icon 🎥
-# @raycast.description 下載影片 (v4.0.7)，修正命名邏輯，完美嵌入封面與字幕
-# @raycast.argument1 { "type": "text", "placeholder": "貼上影片或播放清單網址", "secure": false }
+# @raycast.description 下載影片 (v4.0.7)
+# @raycast.argument1 { "type": "text", "placeholder": "貼上網址", "secure": false }
 # @raycast.argument2 { "type": "dropdown", "placeholder": "目標格式", "data": [{"title": "高相容優先 (MP4)", "value": "mp4"}, {"title": "最高畫質 (MKV)", "value": "mkv"}] }
 # @raycast.argument3 { "type": "dropdown", "placeholder": "字幕與彈幕", "data": [{"title": "自動下載 (優先繁中+彈幕)", "value": "auto"}, {"title": "略過字幕", "value": "none"}] }
 

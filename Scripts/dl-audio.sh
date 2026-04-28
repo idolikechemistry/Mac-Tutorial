@@ -9,7 +9,7 @@
 # @raycast.argument1 { "type": "text", "placeholder": "貼上網址", "secure": false }
 # @raycast.argument2 { "type": "dropdown", "placeholder": "格式選擇", "data": [{"title": "原生無損 (M4A)", "value": "m4a"}, {"title": "高相容 (MP3 320k)", "value": "mp3"}] }
 
-# Ver 20260427 (Amphibious Edition)
+# Ver 20260427
 
 set -euo pipefail
 
