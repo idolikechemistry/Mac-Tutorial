@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # ==========================================
 # 1. 系統依賴檢查
@@ -54,14 +54,14 @@ convert_vtt_to_lrc() {
     local offset="$2"
     perl -ne '
         BEGIN { $offset = '$offset'; $time_tag = ""; $text = ""; }
-        s/\r//g; s/<[^>]*>//g; 
+        s/\r//g; s/<[^>]*>//g;
         if (/^WEBVTT/ || /^\s*$/ || /^\s*\d+\s*$/) { next; }
         if (/^(?:(\d{1,2}):)?(\d{2}):(\d{2})[\.\,](\d{3})\s*-->/) {
             if ($time_tag ne "") { print "$time_tag$text\n"; }
             my $h=$1?$1+0:0; my $m=$2+0; my $s=$3+0; my $ms=$4+0;
             my $total_sec = ($h*3600)+($m*60)+$s+($ms/1000)+$offset;
             my $new_m=int($total_sec/60); my $new_s=$total_sec-($new_m*60);
-            $time_tag = sprintf("[%02d:%05.2f]", $new_m, $new_s); $text = ""; 
+            $time_tag = sprintf("[%02d:%05.2f]", $new_m, $new_s); $text = "";
         } elsif ($time_tag ne "") {
             s/^\s+|\s+$//g; $text .= ($text eq "" ? "" : " ") . $_;
         }
@@ -87,7 +87,7 @@ for f in "${AUDIO_FILES[@]}"; do
     BASENAME=$(basename "$f")
     TITLE="${BASENAME%.*}"
     ((count++))
-    
+
     DURATION_SEC=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$f")
     DURATION_MS=$(awk "BEGIN {print int($DURATION_SEC * 1000)}")
 
@@ -101,13 +101,13 @@ for f in "${AUDIO_FILES[@]}"; do
     M_SRT=$(awk "BEGIN {printf \"%02d\", int(($CURRENT_TIME_SEC_FLOAT%3600)/60)}")
     S_SRT=$(awk "BEGIN {printf \"%02d\", int($CURRENT_TIME_SEC_FLOAT%60)}")
     MS_SRT=$(awk "BEGIN {printf \"%03d\", int(($CURRENT_TIME_SEC_FLOAT*1000)%1000)}")
-    
+
     END_TIME=$(echo "$CURRENT_TIME_SEC_FLOAT + 3.0" | bc)
     EH_SRT=$(awk "BEGIN {printf \"%02d\", int($END_TIME/3600)}")
     EM_SRT=$(awk "BEGIN {printf \"%02d\", int(($END_TIME%3600)/60)}")
     ES_SRT=$(awk "BEGIN {printf \"%02d\", int($END_TIME%60)}")
     EMS_SRT=$(awk "BEGIN {printf \"%03d\", int(($END_TIME*1000)%1000)}")
-    
+
     printf "999\n%s:%s:%s,%s --> %s:%s:%s,%s\n【 %s 】\n\n" \
         $H_SRT $M_SRT $S_SRT $MS_SRT $EH_SRT $EM_SRT $ES_SRT $EMS_SRT "$TITLE" >> "$RAW_SRT_BUILD"
 
@@ -153,7 +153,7 @@ ffmpeg -v warning -y -f concat -safe 0 -i "$CONCAT_LIST" -c:a aac -b:a 256k "$ME
 if [ "$HAS_ANY_SUB" -eq 1 ]; then
     awk '
         BEGIN { idx = 1; }
-        /^[0-9]+$/ { 
+        /^[0-9]+$/ {
             getline next_line;
             if (next_line ~ /-->/) {
                 print idx++;
