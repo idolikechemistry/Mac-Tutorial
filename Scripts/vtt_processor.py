@@ -40,7 +40,6 @@ def process_vtt(vtt_content, offset_seconds, start_counter):
             start_seconds = time_to_seconds(start_time_str) + offset_seconds
             end_seconds = time_to_seconds(end_time_str) + offset_seconds
 
-            # 產生三種不同規範的時間軸
             new_srt_start = seconds_to_srt_time(start_seconds)
             new_srt_end = seconds_to_srt_time(end_seconds)
             new_lrc_start = seconds_to_lrc_time(start_seconds)
@@ -53,7 +52,6 @@ def process_vtt(vtt_content, offset_seconds, start_counter):
                     caption_lines.append(cleaned_line)
 
             if caption_lines:
-                # SRT (原生字幕軌)
                 srt_output.append(str(current_counter))
                 srt_output.append(f"{new_srt_start} --> {new_srt_end}")
                 srt_output.extend(caption_lines)
@@ -61,10 +59,7 @@ def process_vtt(vtt_content, offset_seconds, start_counter):
                 current_counter += 1
 
                 text_joined = " ".join(caption_lines)
-
-                # 標準 LRC (實體備份)
                 lrc_output.append(f"{new_lrc_start}{text_joined}")
-                # 擴充 LRC (Mutagen 內嵌用)
                 ext_lrc_output.append(f"{new_ext_lrc_start}{text_joined}")
 
     return (
@@ -78,39 +73,46 @@ def process_vtt(vtt_content, offset_seconds, start_counter):
 def time_to_seconds(time_str):
     parts = time_str.replace(".", ":").split(":")
     if len(parts) == 3:
-        return int(parts[0]) * 60 + int(parts[1]) + int(parts[2]) / 1000.0
+        return int(parts[0]) * 60 + int(parts[1]) + float(parts[2]) / 1000.0
     elif len(parts) == 4:
         return (
             int(parts[0]) * 3600
             + int(parts[1]) * 60
             + int(parts[2])
-            + int(parts[3]) / 1000.0
+            + float(parts[3]) / 1000.0
         )
-    return 0
+    return 0.0
 
 
 def seconds_to_srt_time(total_seconds):
     hours = int(total_seconds // 3600)
     minutes = int((total_seconds % 3600) // 60)
     seconds = int(total_seconds % 60)
-    milliseconds = int((total_seconds % 1) * 1000)
+    milliseconds = int(round((total_seconds % 1) * 1000))
+    if milliseconds >= 1000:
+        milliseconds = 0
+        seconds += 1
     return f"{hours:02}:{minutes:02}:{seconds:02},{milliseconds:03}"
 
 
 def seconds_to_lrc_time(total_seconds):
-    # 標準版：允許分鐘數超過 60，相容傳統 LRC 規範
     minutes = int(total_seconds // 60)
     seconds = int(total_seconds % 60)
-    centiseconds = int((total_seconds % 1) * 100)
+    centiseconds = int(round((total_seconds % 1) * 100))
+    if centiseconds >= 100:
+        centiseconds = 0
+        seconds += 1
     return f"[{minutes:02}:{seconds:02}.{centiseconds:02}]"
 
 
 def seconds_to_ext_lrc_time(total_seconds):
-    # 擴充版：強制解析小時，解決 Evermusic 等播放器的 60 分鐘溢位 Bug
     hours = int(total_seconds // 3600)
     minutes = int((total_seconds % 3600) // 60)
     seconds = int(total_seconds % 60)
-    centiseconds = int((total_seconds % 1) * 100)
+    centiseconds = int(round((total_seconds % 1) * 100))
+    if centiseconds >= 100:
+        centiseconds = 0
+        seconds += 1
 
     if hours > 0:
         return f"[{hours:02}:{minutes:02}:{seconds:02}.{centiseconds:02}]"
@@ -126,12 +128,9 @@ if __name__ == "__main__":
         )
         sys.exit(1)
 
-    vtt_in = sys.argv[1]
-    offset = float(sys.argv[2])
-    counter = int(sys.argv[3])
-    srt_out = sys.argv[4]
-    lrc_out = sys.argv[5]
-    ext_lrc_out = sys.argv[6]
+    vtt_in, offset_str, counter_str, srt_out, lrc_out, ext_lrc_out = sys.argv[1:7]
+    offset = float(offset_str)
+    counter = int(counter_str)
 
     try:
         with open(vtt_in, "r", encoding="utf-8-sig") as f:
