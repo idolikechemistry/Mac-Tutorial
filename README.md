@@ -343,15 +343,17 @@ youtube.com##+js(set, Object.prototype.hasAllowedInstreamAd, true)
 
 在 Firefox 網址列輸入：`about:config`
 
-| Formula                             |        Value        |
-| :---------------------------------- | :-----------------: |
-| browser.gesture.pinch.in            | cmd_fullZoomReduce  |
-| browser.gesture.pinch.in.shift      |  cmd_fullZoomReset  |
-| browser.gesture.pinch.latched       |        true         |
-| browser.gesture.pinch.out           | cmd_fullZoomEnlarge |
-| browser.gesture.pinch.out.shift     |  cmd_fullZoomReset  |
-| browser.tabs.closeTabByDblclick     |        true         |
-| browser.tabs.closeWindowWithLastTab |        false        |
+| Formula                                |        Value        |
+| :------------------------------------- | :-----------------: |
+| browser.gesture.pinch.in               | cmd_fullZoomReduce  |
+| browser.gesture.pinch.in.shift         |  cmd_fullZoomReset  |
+| browser.gesture.pinch.latched          |        true         |
+| browser.gesture.pinch.out              | cmd_fullZoomEnlarge |
+| browser.gesture.pinch.out.shift        |  cmd_fullZoomReset  |
+| browser.tabs.closeTabByDblclick        |        true         |
+| browser.tabs.closeWindowWithLastTab    |        false        |
+| browser.tabs.loadBookmarksInBackground |        true         |
+| browser.tabs.loadBookmarksInTabs       |        true         |
 ### 5.3 Enhancer for YouTube
 
 > [!NOTE]

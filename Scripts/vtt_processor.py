@@ -1,7 +1,14 @@
+import os
 import re
 import sys
 
+from mutagen._file import File
+from mutagen.mp4 import MP4
 
+
+# ==========================================
+# 模式 1：VTT 字幕時間軸處理模組
+# ==========================================
 def process_vtt(vtt_content, offset_seconds, start_counter):
     srt_output = []
     lrc_output = []
@@ -120,7 +127,111 @@ def seconds_to_ext_lrc_time(total_seconds):
         return f"[{minutes:02}:{seconds:02}.{centiseconds:02}]"
 
 
+# ==========================================
+# 模式 2：Metadata 瀑布式繼承與跨格式翻譯模組
+# ==========================================
+def get_standard_tags(filepath):
+    tags = {}
+    try:
+        f = File(filepath)
+        if f is None:
+            return tags
+
+        # 如果是 M4A (MP4 容器)，直接讀取底層原子標籤
+        if type(f).__name__ == "MP4":
+            tags["title"] = f.get("\xa9nam", [None])[0]
+            tags["artist"] = f.get("\xa9ART", [None])[0]
+            tags["album"] = f.get("\xa9alb", [None])[0]
+            tags["date"] = f.get("\xa9day", [None])[0]
+            tags["genre"] = f.get("\xa9gen", [None])[0]
+            tags["comment"] = f.get("\xa9cmt", [None])[0]
+            tags["description"] = f.get("desc", [None])[0]
+            tags["synopsis"] = f.get("syno", [None])[0]
+        else:
+            # 兼容 MP3/FLAC 等格式的通用標籤讀取
+            try:
+                ef = File(filepath, easy=True)
+                if ef is not None:
+                    tags["title"] = ef.get("title", [None])[0]
+                    tags["artist"] = ef.get("artist", [None])[0]
+                    tags["album"] = ef.get("album", [None])[0]
+                    tags["date"] = ef.get("date", [None])[0]
+                    tags["genre"] = ef.get("genre", [None])[0]
+            except Exception:
+                pass
+    except Exception:
+        pass
+
+    return {k: v for k, v in tags.items() if v is not None}
+
+
+def inject_metadata(target_path, ext_lrc_path, orig_files_list):
+    try:
+        final_tags = {}
+        # 瀑布式繼承：遍歷原始檔案列表
+        with open(orig_files_list, "r", encoding="utf-8") as flist:
+            for line in flist:
+                filepath = line.strip()
+                if filepath and os.path.exists(filepath):
+                    file_tags = get_standard_tags(filepath)
+                    for k, v in file_tags.items():
+                        if k not in final_tags:  # 最先出現的值為主
+                            final_tags[k] = v
+
+        video = MP4(target_path)
+
+        # 寫入繼承的標籤
+        if "title" in final_tags:
+            video["\xa9nam"] = final_tags["title"]
+        if "artist" in final_tags:
+            video["\xa9ART"] = final_tags["artist"]
+        if "album" in final_tags:
+            video["\xa9alb"] = final_tags["album"]
+        if "date" in final_tags:
+            video["\xa9day"] = final_tags["date"]
+        if "genre" in final_tags:
+            video["\xa9gen"] = final_tags["genre"]
+        if "comment" in final_tags:
+            video["\xa9cmt"] = final_tags["comment"]
+        if "description" in final_tags:
+            video["desc"] = final_tags["description"]
+        if "synopsis" in final_tags:
+            video["syno"] = final_tags["synopsis"]
+
+        # 寫入歌詞
+        if os.path.exists(ext_lrc_path):
+            with open(ext_lrc_path, "r", encoding="utf-8") as f_lrc:
+                lyr_content = f_lrc.read()
+                if lyr_content.strip():
+                    video["\xa9lyr"] = lyr_content
+
+        video.save()
+        print("✅ Metadata 與歌詞標籤已無損注入 M4A")
+    except Exception as e:
+        print(f"⚠️ 標籤寫入失敗: {e}", file=sys.stderr)
+        sys.exit(1)
+
+
+# ==========================================
+# 主程式入口 (CLI 路由)
+# ==========================================
 if __name__ == "__main__":
+    # 路由 1：進入 Metadata 處理模式
+    if len(sys.argv) > 1 and sys.argv[1] == "--meta":
+        if len(sys.argv) != 5:
+            print(
+                "Usage: python3 vtt_processor.py --meta <target_m4a> <ext_lrc_path> <orig_files_list>",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+
+        target_m4a = sys.argv[2]
+        ext_lrc = sys.argv[3]
+        orig_files = sys.argv[4]
+        inject_metadata(target_m4a, ext_lrc, orig_files)
+        sys.exit(0)
+
+    # 路由 2：進入 VTT 字幕處理模式 (相容舊有指令格式)
     if len(sys.argv) != 7:
         print(
             "Usage: python3 vtt_processor.py <vtt_in> <offset> <start_counter> <srt_out> <lrc_out> <ext_lrc_out>",

@@ -62,10 +62,10 @@ check_deps
 setup
 
 # --- 1. 資源檢索、最高取樣率與音質規格偵測 (痛點 A) ---
-audio_files=( *.(wav|mp3|m4a)(Nn) )
+audio_files=( *.(wav|mp3|m4a|aac|flac)(Nn) )
 
 if [ ${#audio_files[@]} -eq 0 ]; then
-    echo -e "${RED}未找到音訊檔案 (.wav/.mp3/.m4a)${NC}"
+    echo -e "${RED}未找到音訊檔案 (.wav/.mp3/.m4a/.aac/.flac)${NC}"
     exit 1
 fi
 
@@ -74,7 +74,7 @@ MAX_SR=44100
 USE_ALAC=false # 預設不使用無損編碼
 
 for f in "${audio_files[@]}"; do
-    echo "$f" >> "$TEMP_DIR/orig_files.txt" # 記錄原始檔案供後續 Metadata 繼承使用
+    echo "$PWD/$f" >> "$TEMP_DIR/orig_files.txt" # 記錄原始檔案絕對路徑供後續 Metadata 繼承使用
 
     # 1. 偵測最高取樣率
     sr=$(ffprobe -v error -select_streams a:0 -show_entries stream=sample_rate -of default=noprint_wrappers=1:nokey=1 "$f")
@@ -215,94 +215,14 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# --- 6. Mutagen 寫入 Metadata 瀑布流與精準標籤 (痛點 D) ---
-echo "正在使用 Mutagen 進行 Metadata 瀑布式繼承與動態歌詞注入..."
+# --- 6. 呼叫 Python 雙模處理器 (Metadata 瀑布流寫入) (痛點 D) ---
+echo "正在進行 Metadata 瀑布式繼承與動態歌詞注入..."
 
-python3 - "$OUTPUT_FILE" "$full_ext_lrc" "$TEMP_DIR/orig_files.txt" << 'EOF'
-import sys
-import mutagen
-from mutagen.mp4 import MP4
-
-output_file = sys.argv[1]
-ext_lrc_file = sys.argv[2]
-orig_files_list = sys.argv[3]
-
-# 升級版：針對 M4A 深度讀取擴充欄位 (Comment, Description, Synopsis)
-def get_standard_tags(filepath):
-    tags = {}
-    try:
-        f = mutagen.File(filepath)
-        if f is None:
-            return tags
-
-        # 如果是 M4A (MP4 容器)，直接讀取底層原子標籤
-        if type(f).__name__ == 'MP4':
-            tags['title'] = f.get('\xa9nam', [None])[0]
-            tags['artist'] = f.get('\xa9ART', [None])[0]
-            tags['album'] = f.get('\xa9alb', [None])[0]
-            tags['date'] = f.get('\xa9day', [None])[0]
-            tags['genre'] = f.get('\xa9gen', [None])[0]
-            tags['comment'] = f.get('\xa9cmt', [None])[0]
-            tags['description'] = f.get('desc', [None])[0]
-            tags['synopsis'] = f.get('syno', [None])[0]
-        else:
-            # 兼容 MP3 的 Fallback 處理
-            from mutagen.easyid3 import EasyID3
-            try:
-                ef = EasyID3(filepath)
-                tags['title'] = ef.get('title', [None])[0]
-                tags['artist'] = ef.get('artist', [None])[0]
-                tags['album'] = ef.get('album', [None])[0]
-                tags['date'] = ef.get('date', [None])[0]
-                tags['genre'] = ef.get('genre', [None])[0]
-            except:
-                pass
-    except Exception:
-        pass
-
-    return {k: v for k, v in tags.items() if v is not None}
-
-try:
-    final_tags = {}
-    # 瀑布式繼承：遍歷原始檔案列表
-    with open(orig_files_list, 'r', encoding='utf-8') as flist:
-        for line in flist:
-            filepath = line.strip()
-            if filepath:
-                file_tags = get_standard_tags(filepath)
-                for k, v in file_tags.items():
-                    if k not in final_tags: # 最先出現的值為主
-                        final_tags[k] = v
-
-    video = MP4(output_file)
-
-    # 寫入繼承的標籤 (包含 YouTube 長文與註解)
-    if 'title' in final_tags: video['\xa9nam'] = final_tags['title']
-    if 'artist' in final_tags: video['\xa9ART'] = final_tags['artist']
-    if 'album' in final_tags: video['\xa9alb'] = final_tags['album']
-    if 'date' in final_tags: video['\xa9day'] = final_tags['date']
-    if 'genre' in final_tags: video['\xa9gen'] = final_tags['genre']
-    if 'comment' in final_tags: video['\xa9cmt'] = final_tags['comment']
-    if 'description' in final_tags: video['desc'] = final_tags['description']
-    if 'synopsis' in final_tags: video['syno'] = final_tags['synopsis']
-
-    # 寫入歌詞
-    try:
-        with open(ext_lrc_file, 'r', encoding='utf-8') as f_lrc:
-            lyr_content = f_lrc.read()
-            if lyr_content.strip():
-                video['\xa9lyr'] = lyr_content
-    except FileNotFoundError:
-        pass
-
-    video.save()
-    print("✅ Metadata 與歌詞標籤已無損注入 M4A")
-except Exception as e:
-    print(f"⚠️ 標籤寫入失敗: {e}", file=sys.stderr)
-EOF
+# 透過 --meta 參數呼叫 vtt_processor.py，傳入目標檔、歌詞檔、以及原始音檔清單
+python3 "$VTT_PROCESSOR_SCRIPT" --meta "$OUTPUT_FILE" "$TEMP_DIR/full_ext.lrc" "$TEMP_DIR/orig_files.txt"
 
 # --- 7. 多軌實體備份 ---
-echo -e "${GREEN}🎉 完成！高相容性無損音訊已輸出至: $OUTPUT_FILE${NC}"
+echo -e "${GREEN}🎉 完成！高相容性音訊已輸出至: $OUTPUT_FILE${NC}"
 
 # 備份實體 SRT
 if [ -s "$full_srt" ]; then
@@ -310,7 +230,7 @@ if [ -s "$full_srt" ]; then
     echo -e "${GREEN}✅ 實體 SRT 字幕檔已備份至: $OUTPUT_SRT${NC}"
 fi
 
-# [修正] 只保留高精度擴充版作為唯一的實體 LRC 備份
+# 只保留高精度擴充版作為唯一的實體 LRC 備份
 if [ -s "$full_ext_lrc" ]; then
     cp "$full_ext_lrc" "$OUTPUT_LRC"
     echo -e "${GREEN}✅ 高精度 LRC [hh:mm:ss.xx] 已備份至: $OUTPUT_LRC${NC}"
