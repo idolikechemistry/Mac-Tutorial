@@ -30,8 +30,9 @@ if [[ -z "$VIDEO_URL" ]]; then
 
   # 詢問格式
   echo "🎵 請選擇目標格式："
-  echo "  [1] 原生無損 (M4A) [預設]"
-  echo "  [2] 高相容 (MP3 320k)"
+  echo "  💡 建議：YouTube 請選 [1] M4A (原生流複製)；街聲 StreetVoice 請選 [2] MP3"
+  echo " [1] 原生無損 (M4A) [預設]"
+  echo " [2] 高相容 (MP3 320k)"
   read -r -p "請輸入數字 (1/2，直接按 Enter 為預設 1): " FORMAT_CHOICE
 
   if [[ "$FORMAT_CHOICE" == "2" ]]; then
