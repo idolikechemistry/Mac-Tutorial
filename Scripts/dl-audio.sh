@@ -9,7 +9,7 @@
 # @raycast.argument1 { "type": "text", "placeholder": "貼上網址", "secure": false }
 # @raycast.argument2 { "type": "dropdown", "placeholder": "格式選擇", "data": [{"title": "原生無損 (M4A)", "value": "m4a"}, {"title": "高相容 (MP3 320k)", "value": "mp3"}] }
 
-# Ver 20260427
+# Ver 20260527 - Fixed StreetVoice/Transparent PNG thumbnail conversion bug
 
 set -euo pipefail
 
@@ -22,18 +22,18 @@ AUDIO_FORMAT="${2:-}"
 if [[ -z "$VIDEO_URL" ]]; then
   echo "🎧 歡迎使用 YouTube 音訊下載器 (Terminal 模式)"
   read -r -p "🔗 請貼上影片或播放清單網址: " VIDEO_URL
-  
+
   if [[ -z "$VIDEO_URL" ]]; then
     echo "❌ 網址不能為空，腳本終止！"
     exit 1
   fi
-  
+
   # 詢問格式
   echo "🎵 請選擇目標格式："
   echo "  [1] 原生無損 (M4A) [預設]"
   echo "  [2] 高相容 (MP3 320k)"
   read -r -p "請輸入數字 (1/2，直接按 Enter 為預設 1): " FORMAT_CHOICE
-  
+
   if [[ "$FORMAT_CHOICE" == "2" ]]; then
     AUDIO_FORMAT="mp3"
   else
@@ -45,7 +45,7 @@ DOWNLOADS_DIR="${HOME}/Downloads"
 
 # 檢查必要依賴 (僅需 yt-dlp 與 ffmpeg)
 for cmd in yt-dlp ffmpeg; do
-  if ! command -v "$cmd" >/dev/null; then 
+  if ! command -v "$cmd" >/dev/null; then
     echo "❌ 錯誤：未安裝 $cmd，請透過 Homebrew 安裝 (brew install $cmd)。"
     exit 1
   fi
@@ -54,13 +54,15 @@ done
 echo "🔍 分析網址結構與格式要求..."
 
 # === 2. 核心通用參數 ===
+# 修正說明：移除了 --convert-thumbnails jpg 參數。
+# 這樣做可以避免 yt-dlp 強制讓 ffmpeg 將 StreetVoice 等帶有透明通道（Alpha Channel）的 PNG 封面轉換為不支援透明度的 JPG 時拋出錯誤。
+# 移除後，yt-dlp 與 AtomicParsley 能夠完美且原生將透明 PNG 或 WebP 封裝進 M4A/MP3，一勞永逸解決 Conversion failed! 報錯。
 DL_ARGS=(
   --ignore-errors
   --no-overwrites
   --embed-thumbnail
   --embed-metadata
-  --convert-thumbnails jpg
-  --restrict-filenames
+  # --restrict-filenames
   --paths "$DOWNLOADS_DIR"
   # 自動略過影片中的業配、片頭片尾互動，確保純音訊體驗最佳化
   --sponsorblock-remove "sponsor,intro,outro"
@@ -69,19 +71,19 @@ DL_ARGS=(
 # === 3. 格式與章節處理邏輯 ===
 if [[ "$AUDIO_FORMAT" == "m4a" ]]; then
   echo "🎵 目標格式：M4A (嘗試原生提取並嵌入章節)"
-  DL_ARGS+=( 
-    --format "bestaudio[ext=m4a]/140/bestaudio" 
-    --extract-audio 
-    --audio-format m4a 
-    --embed-chapters 
+  DL_ARGS+=(
+    --format "bestaudio[ext=m4a]/140/bestaudio"
+    --extract-audio
+    --audio-format m4a
+    --embed-chapters
   )
 else
   echo "🎵 目標格式：MP3 320k (不支援章節嵌入)"
-  DL_ARGS+=( 
-    --format "bestaudio" 
-    --extract-audio 
-    --audio-format mp3 
-    --audio-quality "320k" 
+  DL_ARGS+=(
+    --format "bestaudio"
+    --extract-audio
+    --audio-format mp3
+    --audio-quality "320k"
   )
 fi
 
